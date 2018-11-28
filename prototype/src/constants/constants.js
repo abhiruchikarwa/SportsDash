@@ -1,6 +1,5 @@
-const API_KEY = "3kgzp5wm7ryn7pw6tatkr793";
-const BASE_URL = "http://api.sportradar.us/nfl/official/trial/v5/en/";
+const BASE_URL = 'https://prototype-server-fall18.herokuapp.com/';
 
 export default {
-    API_KEY, BASE_URL
+    BASE_URL
 }

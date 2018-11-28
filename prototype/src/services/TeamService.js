@@ -1,9 +1,7 @@
-import api from '../constants/constants'
-import league from './league'
-import team from './team'
+import constants from '../constants/constants'
 
 export default class TeamService {
-    static getTeams = () => fetch("http://localhost:8080/api/team", {
+    static getTeams = () => fetch(constants.BASE_URL + 'api/team', {
         method: 'GET',
         mode: "cors",
         credentials: 'include'
@@ -22,7 +20,7 @@ export default class TeamService {
         })
         .catch(error => console.log(error));
 
-    static getTeamDetails = (teamId) => fetch("http://localhost:8080/api/team/" + teamId, {
+    static getTeamDetails = (teamId) => fetch(constants.BASE_URL + 'api/team/' + teamId, {
         method: 'GET',
         mode: "cors",
         credentials: 'include'
