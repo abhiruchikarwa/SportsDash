@@ -20,8 +20,6 @@ export default class TeamDetail extends Component {
     }
 
     render() {
-        console.log(this.state.team);
-        console.log(Object.keys(this.state.team));
         return (
             <div>
                 {

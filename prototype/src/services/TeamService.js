@@ -3,30 +3,31 @@ import league from './league'
 import team from './team'
 
 export default class TeamService {
-    static getTeams = () => {
-        return Promise.resolve(league)
-            .then(leagueInfo => {
-                var teams = [];
-                const conferences = leagueInfo.conferences;
-                conferences.forEach(conference => {
-                    const divisions = conference.divisions;
-                    divisions.forEach(div => {
-                        teams = teams.concat(div.teams);
-                    });
+    static getTeams = () => fetch("http://localhost:8080/api/team", {
+        method: 'GET',
+        mode: "cors",
+        credentials: 'include'
+    })
+        .then(res => res.json())
+        .then(leagueInfo => {
+            let teams = [];
+            const conferences = leagueInfo.conferences;
+            conferences.forEach(conference => {
+                const divisions = conference.divisions;
+                divisions.forEach(div => {
+                    teams = teams.concat(div.teams);
                 });
-                return Promise.resolve(teams);
             });
+            return teams;
+        })
+        .catch(error => console.log(error));
 
-        // fetch(api.BASE_URL + 'league/hierarchy.json?' + api.API_KEY, {
-        //   method: 'GET',
-        //   credentials: 'include',
-        // })
-        //   .then(res => console.log(res))
-        //   .catch(error => console.log(error))
+    static getTeamDetails = (teamId) => fetch("http://localhost:8080/api/team/" + teamId, {
+        method: 'GET',
+        mode: "cors",
+        credentials: 'include'
+    })
+        .then(res => res.json())
+        .catch(error => console.log(error));
 
-    };
-
-    static getTeamDetails = (teamId) => {
-        return Promise.resolve(team);
-    }
 }
