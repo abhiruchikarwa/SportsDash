@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import TeamService from '../services/TeamService';
 
 export default class TeamDetail extends Component {
@@ -26,7 +26,7 @@ export default class TeamDetail extends Component {
                     this.state.team && this.state.team.venue && this.state.team.division && (
                         <ul>
                             <h1>Team Detail</h1>
-                            <li> Name: {this.state.team.name}</li>
+                            <li>Name: {this.state.team.name}</li>
                             <li>Market: {this.state.team.market}</li>
                             <li>Venue Name: {this.state.team.venue.name}</li>
                             <li>Venue City: {this.state.team.venue.city}</li>
