@@ -1,4 +1,4 @@
-package com.example.prototypeserver.services;
+package prototype.server.services;
 
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
