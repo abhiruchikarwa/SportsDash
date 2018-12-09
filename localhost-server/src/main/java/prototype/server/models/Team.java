@@ -13,7 +13,6 @@ public class Team {
     private String api_id;
     private String name;
 
-
     @ManyToMany
     @JoinTable(name = "FAVORITE",
             joinColumns = @JoinColumn(name = "TEAM_ID",

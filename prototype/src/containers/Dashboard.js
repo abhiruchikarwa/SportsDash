@@ -1,9 +1,14 @@
-import React, {Component} from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom'
-import TeamRow from '../components/TeamRow';
-import TeamService from '../services/TeamService'
-import TeamDetail from './TeamDetail';
-
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import NavBar from '../components/NavBar'
+import SearchBar from '../components/SearchBar'
+import '../styles/dashboard.style.client.css'
+import ScheduleBox from "../components/ScheduleBox";
+import StandingsBox from "../components/StandingsBox";
+import SearchResults from "../components/SearchResults";
+import FavoriteComponent from "../components/FavoriteComponent";
+import CommentBox from "../components/CommentBox"
+import DetailsComponent from '../components/DetailsComponent';
 export default class Dashboard extends Component {
     constructor(props) {
         super(props);
@@ -11,51 +16,62 @@ export default class Dashboard extends Component {
             teams: [],
             displayTeams: [],
             searchTerm: '',
+            favorites: {}
         };
-        this.handleSearch = this.handleSearch.bind(this);
-    }
-
-    handleSearch(event) {
-        this.setState({
-            searchTerm: event.target.value,
-            displayTeams: this.state.teams.filter(team => team.market.toLowerCase().includes(event.target.value.toLowerCase())
-                || team.name.toLowerCase().includes(event.target.value.toLowerCase())).splice(0)
-        });
-    }
-
-    componentDidMount() {
-        TeamService.getTeams()
-            .then(teams => this.setState({
-                teams: teams,
-                displayTeams: teams,
-            }));
     }
 
     render() {
         return (
             <Router>
                 <div>
-                    <Route exact path="/" render={() =>
-                        <div className="container-fluid">
-                            <h1>Dashboard</h1>
-                            <form>
-                                <div className="container row">
-                                    <input type="text"
-                                           className="form-control"
-                                           placeholder="Enter team name here"
-                                           onChange={this.handleSearch}/>
-                                </div>
-                            </form>
-                            <TeamRow
-                                teams={this.state.displayTeams}
-                            />
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-md-12">
+                                <NavBar />
+                            </div>
                         </div>
-                    }/>
-                    <Route
-                        render={(props) =>
-                            <TeamDetail
-                                {...props}/>}
-                        path="/team/:teamId"/>
+                    </div>
+                    <Route path="/(home|)" render={() =>
+                        <div className="container search-bar">
+                            <div className="row">
+                                <div className="col-md-12">
+                                    <SearchBar />
+                                </div>
+                            </div>
+                        </div>
+                    } />
+                    <Route exact path="/(home|)" render={() =>
+                        <div>
+                            <FavoriteComponent />
+                            <div className="container-fluid dash-box">
+                                <div className="row">
+                                    <div className="col-md-6 justify-content-center">
+                                        <div className="card dash-card">
+                                            <div className="card-header text-center heading-text">
+                                                Games Schedule
+                                            </div>
+                                            <div className="card-body pre-scrollable">
+                                                <ScheduleBox />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-6 justify-content-center">
+                                        <div className="card dash-card">
+                                            <div className="card-header text-center heading-text">
+                                                Team Standings
+                                            </div>
+                                            <div className="card-body pre-scrollable">
+                                                <StandingsBox />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    } />
+                    <Route exact path="/search" component={SearchResults} />
+                    <Route exact path="/comment" component={CommentBox} />
+                    <Route exact path="/details" component={DetailsComponent} />
                 </div>
             </Router>
         );

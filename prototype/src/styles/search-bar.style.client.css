@@ -1,0 +1,21 @@
+.drop-menu {
+    background-color: #01336a;
+    color: #eeeeee !important;
+    font-family: 'Roboto', sans-serif;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+
+.search-button {
+    background-color: #01336a !important;
+    cursor: pointer;
+}
+
+.search-button-logo {
+    color: white;
+}
+
+.search-bar-area:focus {
+    box-shadow: none !important;
+    border-color: #01326b !important;
+}

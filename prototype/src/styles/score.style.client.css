@@ -1,0 +1,9 @@
+.score-box {
+    margin: 1% !important;
+    font-family: 'Roboto', sans-serif;
+}
+
+.scrollable-score {
+    height: 20vh !important;
+    overflow-y: scroll;
+}

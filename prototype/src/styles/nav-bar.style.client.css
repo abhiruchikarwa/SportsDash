@@ -1,0 +1,14 @@
+.main_nav {
+    background-color: #01336a;
+    box-shadow: 0 1px 5px #2f2f2f;
+}
+
+.main_title {
+    color: #eeeeee !important;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+}
+
+.profile-button {
+    text-align: right;
+}
