@@ -1,9 +1,9 @@
 package prototype.server.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Player {
@@ -12,6 +12,40 @@ public class Player {
     private int id;
     private String api_id;
     private String name;
+
+    @ManyToMany
+    @JoinTable(name = "FOLLOWING",
+            joinColumns = @JoinColumn(name = "PLAYER_ID",
+                    referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(name =
+                    "USER_ID", referencedColumnName = "ID"))
+    @JsonIgnore
+    private Set<User> followers;
+
+    @ManyToMany
+    @JoinTable(name = "COMMENT",
+            joinColumns = @JoinColumn(name = "PLAYER_ID",
+                    referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(name =
+                    "USER_ID", referencedColumnName = "ID"))
+    @JsonIgnore
+    private Set<User> commentGivers;
+
+    public Set<User> getCommentGivers() {
+        return commentGivers;
+    }
+
+    public void setCommentGivers(Set<User> commentGivers) {
+        this.commentGivers = commentGivers;
+    }
+
+    public Set<User> getFollowers() {
+        return followers;
+    }
+
+    public void setFollowers(Set<User> followers) {
+        this.followers = followers;
+    }
 
     public Player() {
     }
