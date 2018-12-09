@@ -3,6 +3,8 @@ package prototype.server.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -26,16 +28,15 @@ public class User {
     @JsonIgnore
     private Set<Team> favorites;
 
-    @ManyToMany(mappedBy = "commentGivers", cascade = CascadeType.ALL)
-    @JsonIgnore
-    private Set<Player> commentReceivers;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> commentsGiven;
 
-    public Set<Player> getCommentReceivers() {
-        return commentReceivers;
+    public List<Comment> getCommentsGiven() {
+        return commentsGiven;
     }
 
-    public void setCommentReceivers(Set<Player> commentReceivers) {
-        this.commentReceivers = commentReceivers;
+    public void setCommentsGiven(List<Comment> commentsGiven) {
+        this.commentsGiven = commentsGiven;
     }
 
     public Set<Team> getFavorites() {

@@ -1,11 +1,11 @@
 package prototype.server.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 
 @Entity
+@Table(name = "comment")
 public class Comment {
 
     @Id
@@ -13,11 +13,21 @@ public class Comment {
     private int id;
     private String comment;
 
+    @ManyToOne
+    @JsonIgnore
+    private Player player;
+
+    @ManyToOne
+    @JsonIgnore
+    private User user;
+
     public Comment() {
     }
 
-    public Comment(String comment) {
+    public Comment(String comment, Player player, User user) {
         this.comment = comment;
+        this.player = player;
+        this.user = user;
     }
 
     public int getId() {
@@ -34,5 +44,21 @@ public class Comment {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

@@ -93,7 +93,6 @@ public class UserService {
             @PathVariable("teamId") int teamId) {
 
         if (userRepository.findById(userId).isPresent() && teamRepository.findById(teamId).isPresent()) {
-            System.out.println("\nCame here");
             User user = userRepository.findById(userId).get();
             Team team = teamRepository.findById(teamId).get();
             user.removeFavorite(team);

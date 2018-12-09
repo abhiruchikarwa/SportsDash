@@ -2,6 +2,8 @@ package prototype.server.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -21,21 +23,15 @@ public class Player {
     @JsonIgnore
     private Set<User> followers;
 
-    @ManyToMany
-    @JoinTable(name = "COMMENT",
-            joinColumns = @JoinColumn(name = "PLAYER_ID",
-                    referencedColumnName = "ID"),
-            inverseJoinColumns = @JoinColumn(name =
-                    "USER_ID", referencedColumnName = "ID"))
-    @JsonIgnore
-    private Set<User> commentGivers;
+    @OneToMany(mappedBy = "player")
+    private List<Comment> commentsReceived;
 
-    public Set<User> getCommentGivers() {
-        return commentGivers;
+    public List<Comment> getCommentsReceived() {
+        return commentsReceived;
     }
 
-    public void setCommentGivers(Set<User> commentGivers) {
-        this.commentGivers = commentGivers;
+    public void setCommentsReceived(List<Comment> commentsReceived) {
+        this.commentsReceived = commentsReceived;
     }
 
     public Set<User> getFollowers() {
