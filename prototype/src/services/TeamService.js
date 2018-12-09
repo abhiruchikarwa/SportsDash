@@ -1,7 +1,4 @@
 import constants from '../constants/constants'
-import standingData from './standing'
-import scheduleData from './schedule'
-import favoriteData from './favorites'
 
 import arizona_cardinals from '../resources/images/team_logos/arizona_cardinals.png'
 import atlanta_falcons from '../resources/images/team_logos/atlanta_falcons.png'
@@ -37,49 +34,19 @@ import tennessee_titans from '../resources/images/team_logos/tennessee_titans.pn
 import washington_redskins from '../resources/images/team_logos/washington_redskins.png'
 
 export default class TeamService {
-    static getTeams = () => {
-        return fetch(constants.BASE_URL + 'api/league', {
-            method: 'GET',
-            mode: "cors",
-            credentials: 'include'
-        })
-            .then(res => res.json())
-            .then(leagueInfo => {
-                let teams = [];
-                const conferences = leagueInfo.conferences;
-                conferences.forEach(conference => {
-                    const divisions = conference.divisions;
-                    divisions.forEach(div => {
-                        teams = teams.concat(div.teams);
-                    });
-                });
-                return teams;
-            })
-            .catch(error => console.log(error));
-    }
 
     static getTeamDetails = (teamId) => {
-        return fetch(constants.BASE_URL + 'api/team/' + teamId, {
+        return fetch(constants.BASE_URL + 'api/team/' + teamId + '/details/', {
             method: 'GET',
             mode: "cors",
             credentials: 'include'
         })
             .then(res => res.json())
             .catch(error => console.log(error));
-    }
-
-    static getTeamStandings = () => {
-        let teamStandings = JSON.parse(JSON.stringify(standingData));
-        return Promise.resolve(teamStandings)
-    };
-
-    static getSchedule = () => {
-        let schedule = JSON.parse(JSON.stringify(scheduleData));
-        return Promise.resolve(schedule.week)
     };
 
     static getFavoriteTeams = () => {
-        return Promise.resolve(favoriteData)
+        return Promise.resolve([])
     };
 
     static getTeamLogo = (teamName) => {

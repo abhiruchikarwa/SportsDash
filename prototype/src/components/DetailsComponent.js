@@ -35,11 +35,11 @@ class DetailsComponent extends Component {
           switch (this.state.filter) {
             // case 'player':
             //   return <PlayerDetails id={this.state.id} />
-            case 'team':
+            case 'teams':
               return <TeamDetails id={this.state.id} />
-            case 'game':
+            case 'games':
               return <GameDetails id={this.state.id} />
-            case 'venue':
+            case 'venues':
               return <VenueDetails id={this.state.id} />
             default:
               return <h1>Invalid Details</h1>

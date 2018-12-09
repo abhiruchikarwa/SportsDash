@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import '../styles/standing.style.client.css'
 import TeamService from "../services/TeamService";
 import {withRouter} from 'react-router-dom'
+import StandingService from "../services/StandingService";
 
 class StandingsBox extends Component {
     constructor(props) {
@@ -13,7 +14,7 @@ class StandingsBox extends Component {
 
     TableBodyComponent = ({team}) => {
         return (
-            <tr onClick={() => this.props.history.push('/details?filter=team&id=' + team.id)}
+            <tr onClick={() => this.props.history.push('/details?filter=teams&id=' + team.id)}
                 className="d-flex table-row-items table-body-item">
                 <td className="col-md-4">
                     <img className="mr-2" src={TeamService.getTeamLogo(team.market + " " + team.name)}
@@ -57,10 +58,12 @@ class StandingsBox extends Component {
     };
 
     componentDidMount() {
-        TeamService.getTeamStandings()
-            .then(standings => this.setState({
-                standings: standings
-            }))
+        setTimeout(() => {
+            StandingService.getStandings()
+                .then(standings => this.setState({
+                    standings: standings
+                }))
+        }, 1000);
     }
 
     render() {

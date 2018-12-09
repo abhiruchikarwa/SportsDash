@@ -40,7 +40,7 @@ class SearchBar extends Component {
 
     searchResults = () => {
         if (this.state.filter !== "Filter By" && this.state.searchText !== "") {
-            this.props.history.push("/search?filter=" + this.state.filter + "&term=" + this.state.searchText)
+            this.props.history.push("/search?filter=" + this.state.filter.toLowerCase() + "&term=" + this.state.searchText)
         }
         else {
             $(".alert").show()

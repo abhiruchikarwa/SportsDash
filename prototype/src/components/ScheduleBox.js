@@ -1,8 +1,10 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import TeamService from "../services/TeamService";
 import '../styles/schedule.style.client.css'
 import * as moment from 'moment';
-import { withRouter } from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
+import ScheduleService from "../services/ScheduleService";
+import StandingService from "../services/StandingService";
 
 class ScheduleBox extends Component {
     constructor(props) {
@@ -13,13 +15,15 @@ class ScheduleBox extends Component {
     }
 
     componentDidMount() {
-        TeamService.getSchedule()
-            .then(schedule => this.setState({
-                schedule: schedule
-            }))
+        setTimeout(() => {
+            return ScheduleService.getSchedule(StandingService.weekNumber)
+                .then(schedule => this.setState({
+                    schedule: schedule
+                }))
+        }, 2500);
     }
 
-    ListItemComponent = ({ game }) => {
+    ListItemComponent = ({game}) => {
         return (
             <li onClick={() => this.props.history.push('/details?filter=game&id=' + game.id)}
                 className="list-group-item schedule-card">
@@ -27,7 +31,7 @@ class ScheduleBox extends Component {
                     <span className="match-details">{moment(game.scheduled).format("ddd, MM/D")}</span>
                 </div>
                 <div className="row justify-content-center align-items-center">
-                    <div className="col-md-1"><img src={TeamService.getTeamLogo(game.home.name)} width={"50px"} /></div>
+                    <div className="col-md-1"><img src={TeamService.getTeamLogo(game.home.name)} width={"50px"}/></div>
                     <div className="col-md-3 match-text"><span>{game.home.name}</span></div>
                     <div className="col-md-1 match-text"><span>{game.scoring ? game.scoring.home_points : "--"}</span>
                     </div>
@@ -35,7 +39,7 @@ class ScheduleBox extends Component {
                     <div className="col-md-1 match-text "><span>{game.scoring ? game.scoring.away_points : "--"}</span>
                     </div>
                     <div className="col-md-3 match-text"><span>{game.away.name}</span></div>
-                    <div className="col-md-1"><img src={TeamService.getTeamLogo(game.away.name)} width={"50px"} /></div>
+                    <div className="col-md-1"><img src={TeamService.getTeamLogo(game.away.name)} width={"50px"}/></div>
                 </div>
                 <div className="row justify-content-center align-items-center">
                     <span
@@ -52,7 +56,7 @@ class ScheduleBox extends Component {
                     {
                         this.state.schedule && this.state.schedule.games
                         && this.state.schedule.games.length > 0 && this.state.schedule.games.map((game, index) =>
-                            <this.ListItemComponent key={index} game={game} />)
+                            <this.ListItemComponent key={index} game={game}/>)
                     }
                 </ul>
             </div>

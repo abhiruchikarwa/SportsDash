@@ -52,7 +52,7 @@ class SearchResults extends Component {
                             </div> :
                             this.state.searchResults.map((element, index) =>
                                 <div key={index}
-                                    onClick={() => this.props.history.push('/details?filter=' + this.state.filter + '&id=' + element.id)}
+                                    onClick={() => this.props.history.push('/details?filter=' + this.state.filter.toLowerCase() + '&id=' + element.api_id)}
                                     className="card col-md-2 card-view-item shadow justify-content-center align-items-center">
                                     <div
                                         className="card-link justify-content-center align-items-center">
