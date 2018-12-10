@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom';
 import TeamDetails from '../components/TeamDetails';
 import GameDetails from '../components/GameDetails';
 import VenueDetails from '../components/VenueDetails';
-
+import PlayerDetails from '../components/PlayerDetails';
 
 class DetailsComponent extends Component {
 
@@ -28,13 +28,23 @@ class DetailsComponent extends Component {
     }
   }
 
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.location.search !== this.props.location.search) {
+      const values = queryString.parse(this.props.location.search);
+      this.setState({
+        filter: values.filter,
+        id: values.id,
+      });
+    }
+  }
+
   render() {
     return (
       <div>
         {(() => {
           switch (this.state.filter) {
-            // case 'player':
-            //   return <PlayerDetails id={this.state.id} />
+            case 'players':
+              return <PlayerDetails id={this.state.id} />
             case 'teams':
               return <TeamDetails id={this.state.id} />
             case 'games':

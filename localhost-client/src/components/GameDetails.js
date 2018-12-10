@@ -1,7 +1,7 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import moment from 'moment';
 import _ from 'lodash';
-import {withRouter} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 import '../styles/favorite.style.client.css'
 import '../styles/score.style.client.css'
@@ -21,51 +21,55 @@ class GameDetails extends Component {
 
     componentDidMount() {
         GameService.getGameDetails(this.state.gameId)
-            .then(game => this.setState({game}));
+            .then(game => this.setState({ game }));
     }
 
-    GameSummary = ({game}) => {
+    GameSummary = ({ game }) => {
         return (
             <div className="card-text">
                 <div className="row justify-content-center align-items-center">
                     <span className="match-details">{moment(game.scheduled).format("ddd, MM/DD/YY")}</span>
                 </div>
                 <div className="row justify-content-center align-items-center">
-                    <div className="col-md-1"><img alt="home"
-                                                   src={TeamService.getTeamLogo(game.home.market + ' ' + game.home.name)}
-                                                   width={"50px"}/></div>
-                    <div className="col-md-3 match-text"><span>{game.home.market + ' ' + game.home.name}</span></div>
+                    <div className="col-md-4 row game-venue" onClick={() => this.props.history.push('/details?filter=teams&id=' + game.home.id)}>
+                        <div className="col-md-4"><img alt="home"
+                            src={TeamService.getTeamLogo(game.home.market + ' ' + game.home.name)}
+                            width={"50px"} /></div>
+                        <div className="col-md-8 match-text"><span>{game.home.market + ' ' + game.home.name}</span></div>
+                    </div>
                     <div className="col-md-1 match-text"><span>{game.home.points ? game.home.points : "--"}</span>
                     </div>
                     <div className="col-md-1 text-center"><span>VS</span></div>
                     <div className="col-md-1 match-text "><span>{game.away.points ? game.away.points : "--"}</span>
                     </div>
-                    <div className="col-md-3 match-text"><span>{game.away.market + ' ' + game.away.name}</span></div>
-                    <div className="col-md-1"><img alt="away"
-                                                   src={TeamService.getTeamLogo(game.away.market + ' ' + game.away.name)}
-                                                   width={"50px"}/>
+                    <div className="col-md-4 row game-venue" onClick={() => this.props.history.push('/details?filter=teams&id=' + game.away.id)}>
+                        <div className="col-md-8 match-text"><span>{game.away.market + ' ' + game.away.name}</span></div>
+                        <div className="col-md-4"><img alt="away"
+                            src={TeamService.getTeamLogo(game.away.market + ' ' + game.away.name)}
+                            width={"50px"} />
+                        </div>
                     </div>
                 </div>
             </div>
         )
     };
 
-    VenueDeets = ({game, attendance}) => {
+    VenueDeets = ({ venue, attendance }) => {
         return (
-            <div className="card-text">
+            <div className="card-text game-venue" onClick={() => this.props.history.push('/details?filter=venues&id=' + venue.id)}>
                 <div className="row justify-content-center align-items-center">
-                    {game.venue.name} , {game.venue.city}, {game.venue.state}
+                    {venue.name} , {venue.city}, {venue.state}
                 </div>
                 <div className="row justify-content-center align-items-center">
-          <span className="match-details">
-            This venue holds {game.venue.capacity} people and had an attendance of {attendance} for this game.
+                    <span className="match-details">
+                        This venue holds {venue.capacity} people and had an attendance of {attendance} for this game.
           </span>
                 </div>
             </div>
         )
     }
 
-    GameScores = ({team}) => {
+    GameScores = ({ team }) => {
         return (
             <div className="card-text">
                 <div className="justify-content-center align-items-center scrollable-score">
@@ -88,9 +92,9 @@ class GameDetails extends Component {
                             v3={item.touchdowns}
                             v4={item.interceptions}
                         />)
-                    }) : <hr/>}
+                    }) : <hr />}
                 </div>
-                <hr/>
+                <hr />
                 <div className="justify-content-center align-items-center scrollable-score">
                     <div>Rushing</div>
                     <div className="row">
@@ -111,9 +115,9 @@ class GameDetails extends Component {
                             v3={item.avg_yards}
                             v4={item.touchdowns}
                         />)
-                    }) : <hr/>}
+                    }) : <hr />}
                 </div>
-                <hr/>
+                <hr />
                 <div className="justify-content-center align-items-center scrollable-score">
                     <div>Receiving</div>
                     <div className="row">
@@ -134,9 +138,9 @@ class GameDetails extends Component {
                             v3={item.avg_yards}
                             v4={item.touchdowns}
                         />)
-                    }) : <hr/>}
+                    }) : <hr />}
                 </div>
-                <hr/>
+                <hr />
                 <div className="justify-content-center align-items-center scrollable-score">
                     <div>Defense</div>
                     <div className="row">
@@ -157,9 +161,9 @@ class GameDetails extends Component {
                             v3={item.sacks}
                             v4={item.interceptions}
                         />)
-                    }) : <hr/>}
+                    }) : <hr />}
                 </div>
-                <hr/>
+                <hr />
                 <div className="justify-content-center align-items-center scrollable-score">
                     <div>Kick Returns</div>
                     <div className="row">
@@ -180,9 +184,9 @@ class GameDetails extends Component {
                             v3={item.avg_yards}
                             v4={item.touchdowns}
                         />)
-                    }) : <hr/>}
+                    }) : <hr />}
                 </div>
-                <hr/>
+                <hr />
                 <div className="justify-content-center align-items-center scrollable-score">
                     <div>Punt Returns</div>
                     <div className="row">
@@ -203,13 +207,13 @@ class GameDetails extends Component {
                             v3={item.avg_yards}
                             v4={item.touchdowns}
                         />)
-                    }) : <hr/>}
+                    }) : <hr />}
                 </div>
             </div>
         )
     }
 
-    ScoreRow = ({jersey, name, v1, v2, v3, v4}) => {
+    ScoreRow = ({ jersey, name, v1, v2, v3, v4 }) => {
         return (
             <div className="row">
                 <div className="col-1 match-details">{jersey}</div>
@@ -222,7 +226,7 @@ class GameDetails extends Component {
         )
     }
 
-    GameDeets = ({game}) => {
+    GameDeets = ({ game }) => {
         return (
             <div className="card-text">
                 <div className="container-fluid score-box">
@@ -233,7 +237,7 @@ class GameDetails extends Component {
                                     {_.upperCase(game.away.name)}
                                 </div>
                                 <div className="card-body">
-                                    <this.GameScores team={game.away}/>
+                                    <this.GameScores team={game.away} />
                                 </div>
                             </div>
                         </div>
@@ -243,7 +247,7 @@ class GameDetails extends Component {
                                     {_.upperCase(game.home.name)}
                                 </div>
                                 <div className="card-body">
-                                    <this.GameScores team={game.home}/>
+                                    <this.GameScores team={game.home} />
                                 </div>
                             </div>
                         </div>
@@ -268,12 +272,12 @@ class GameDetails extends Component {
                                     Game Details
                                 </div>
                                 <div className="card-body">
-                                    {!_.isEmpty(this.state.game) && <this.GameSummary game={this.state.game.summary}/>}
-                                    <hr/>
-                                    {!_.isEmpty(this.state.game) && <this.VenueDeets game={this.state.game.summary}
-                                                                                     attendance={this.state.game.attendance}/>}
-                                    <hr/>
-                                    {!_.isEmpty(this.state.game) && <this.GameDeets game={this.state.game.statistics}/>}
+                                    {!_.isEmpty(this.state.game) && <this.GameSummary game={this.state.game.summary} />}
+                                    <hr />
+                                    {!_.isEmpty(this.state.game) && <this.VenueDeets venue={this.state.game.summary.venue}
+                                        attendance={this.state.game.attendance} />}
+                                    <hr />
+                                    {!_.isEmpty(this.state.game) && <this.GameDeets game={this.state.game.statistics} />}
                                 </div>
                             </div>
                         </div>
