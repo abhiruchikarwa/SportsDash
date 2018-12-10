@@ -1,0 +1,23 @@
+.match-details {
+    font-size: 12px;
+}
+
+.match-text {
+    font-weight: 500;
+    font-size: 18px;
+    text-align: center;
+}
+
+.schedule-card {
+    box-shadow: 1px 2px 5px #0000004f;
+    margin-bottom: 5px !important;
+    transition: transform .2s;
+}
+
+.schedule-card:hover {
+    cursor: pointer;
+    background-color: #e9ecef69;
+    -ms-transform: scale(1.0075); /* IE 9 */
+    -webkit-transform: scale(1.0075); /* Safari 3-8 */
+    transform: scale(1.0075);
+}

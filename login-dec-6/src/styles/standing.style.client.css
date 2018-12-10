@@ -1,0 +1,12 @@
+.table-row-items {
+    border-bottom: 1px solid #dee2e6;
+}
+
+.table-body-item:hover {
+    cursor: pointer;
+    background-color: #e9ecef69;
+}
+
+.win-pct {
+    font-size: 0.95em;
+}
