@@ -45,10 +45,6 @@ export default class TeamService {
             .catch(error => console.log(error));
     };
 
-    static getFavoriteTeams = () => {
-        return Promise.resolve([])
-    };
-
     static getTeamLogo = (teamName) => {
         switch (teamName) {
             case 'Arizona Cardinals':

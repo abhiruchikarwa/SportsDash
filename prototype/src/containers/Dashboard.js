@@ -9,6 +9,9 @@ import SearchResults from "../components/SearchResults";
 import FavoriteComponent from "../components/FavoriteComponent";
 import CommentBox from "../components/CommentBox"
 import DetailsComponent from '../components/DetailsComponent';
+import Profile from "../components/Profile";
+import Register from "../components/Register";
+import Login from "../components/Login";
 export default class Dashboard extends Component {
     constructor(props) {
         super(props);
@@ -70,8 +73,11 @@ export default class Dashboard extends Component {
                         </div>
                     } />
                     <Route exact path="/search" component={SearchResults} />
-                    <Route exact path="/comment" component={CommentBox} />
+                    {/*<Route exact path="/comment" component={CommentBox} />*/}
                     <Route exact path="/details" component={DetailsComponent} />
+                    <Route exact path="/login" component={Login}/>
+                    <Route exact path="/register" component={Register}/>
+                    <Route exact path="/:userId/profile/:edit" component={Profile}/>
                 </div>
             </Router>
         );

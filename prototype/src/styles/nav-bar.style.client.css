@@ -10,5 +10,7 @@
 }
 
 .profile-button {
+    position: absolute;
     text-align: right;
+    right: 2%;
 }
