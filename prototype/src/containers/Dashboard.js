@@ -7,7 +7,6 @@ import ScheduleBox from "../components/ScheduleBox";
 import StandingsBox from "../components/StandingsBox";
 import SearchResults from "../components/SearchResults";
 import FavoriteComponent from "../components/FavoriteComponent";
-import CommentBox from "../components/CommentBox"
 import DetailsComponent from '../components/DetailsComponent';
 import Profile from "../components/Profile";
 import Register from "../components/Register";

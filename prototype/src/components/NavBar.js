@@ -1,12 +1,8 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import '../styles/nav-bar.style.client.css'
-import {withRouter} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 class NavBar extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     login = () => {
         const curId = sessionStorage.getItem('currentUser');
         if (curId != null)
@@ -21,10 +17,10 @@ class NavBar extends Component {
                 <nav className="navbar row fixed-top navbar-expand-lg main_nav">
                     <a className="navbar-brand main_title" href="/">My Sports Dash</a>
                     <div className="profile-button"
-                         onClick={() => {
-                             this.login()
-                         }}>
-                        <i className="btn fa fa-user fa-2x text-white"/>
+                        onClick={() => {
+                            this.login()
+                        }}>
+                        <i className="btn fa fa-user fa-2x text-white" />
                     </div>
                 </nav>
             </div>

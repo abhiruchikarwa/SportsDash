@@ -1,12 +1,12 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import '../styles/profile.style.client.css'
 import CommentBox from "./CommentBox";
-import {withRouter} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import PersonalInfo from './PersonalInfo'
 import FavoriteComponent from "./FavoriteComponent";
 
 class Profile extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
         const uid = this.props.match.params.userId;
         const isEdit = this.props.match.params.edit;
@@ -16,21 +16,21 @@ class Profile extends Component {
         this.state = {
             userId: uid,
             isEdit: isEdit,
-            isSelf: curId==uid
+            isSelf: curId === uid
         }
     }
 
-    componentWillUpdate(newProps){
-        if(this.props!=newProps) {
+    componentWillUpdate(newProps) {
+        if (this.props !== newProps) {
             this.setState({
                 userId: newProps.match.params.userId,
                 isEdit: newProps.match.params.edit,
-                isSelf: newProps.match.params.userId == sessionStorage.getItem('currentUser')
+                isSelf: newProps.match.params.userId === sessionStorage.getItem('currentUser')
             })
         }
     }
 
-    render(){
+    render() {
         return (
             <div className='profile-content'>
                 <div className='profile-body'>
@@ -39,11 +39,11 @@ class Profile extends Component {
                             <PersonalInfo
                                 userId={this.state.userId}
                                 isEdit={this.state.isEdit}
-                                isSelf={this.state.isSelf}/>
+                                isSelf={this.state.isSelf} />
                         </div>
                         <div className="profile-right col-sm-9">
-                            <CommentBox/>
-                            <FavoriteComponent/>
+                            <CommentBox />
+                            <FavoriteComponent />
                         </div>
 
                     </div>

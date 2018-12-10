@@ -18,7 +18,7 @@ export default class UserService {
                 return "Username already exist"
             }
         }
-        if(user.playerId!="FAN"){
+        if (user.playerId !== "FAN") {
             user.team = {}
             user.seasons = []
         }
@@ -27,7 +27,7 @@ export default class UserService {
     }
 
     static getInfo = (userId) =>
-        UserData.find((user) => user.id==userId)
+        UserData.find((user) => user.id === userId)
 
     static updateUser = (userId, user) => {
         for (var u in UserData) {

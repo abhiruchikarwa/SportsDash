@@ -1,6 +1,6 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import '../styles/favorite.style.client.css'
-import {withRouter} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import TeamService from "../services/TeamService";
 import UserService from "../services/UserService";
 
@@ -41,13 +41,13 @@ class FavoriteComponent extends Component {
                                     {
                                         this.state.favoriteTeams && this.state.favoriteTeams.map((team, index) =>
                                             <div key={index}
-                                                 className="card col-md-2 card-view-item shadow justify-content-center align-items-center">
+                                                className="card col-md-2 card-view-item shadow justify-content-center align-items-center">
                                                 <div
-                                                    onClick={() => this.props.history.push('/details?filter=team&id=' + team.id)}
+                                                    onClick={() => this.props.history.push('/details?filter=teams&id=' + team.id)}
                                                     className="card-link justify-content-center align-items-center">
                                                     <div className="card-body align-items-center">
-                                                        <img src={TeamService.getTeamLogo(team.name)}
-                                                             className="fav-img" width={"40px"}/>
+                                                        <img alt="logo" src={TeamService.getTeamLogo(team.name)}
+                                                            className="fav-img" width={"40px"} />
                                                         <p className="card-title">{team.name}</p>
                                                     </div>
                                                 </div>
@@ -60,9 +60,9 @@ class FavoriteComponent extends Component {
                                     {
                                         this.state.followingPlayers && this.state.followingPlayers.map((player, index) =>
                                             <div key={index}
-                                                 className="card col-md-2 card-view-item shadow justify-content-center align-items-center">
+                                                className="card col-md-2 card-view-item shadow justify-content-center align-items-center">
                                                 <div
-                                                    onClick={() => this.props.history.push('/details?filter=player&id=' + player.id)}
+                                                    onClick={() => this.props.history.push('/details?filter=players&id=' + player.id)}
                                                     className="card-link justify-content-center align-items-center">
                                                     <div className="card-body align-items-center">
                                                         <p className="card-title">{player.name}</p>
