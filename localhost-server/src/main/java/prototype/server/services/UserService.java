@@ -25,30 +25,6 @@ public class UserService {
     @Autowired
     TeamRepository teamRepository;
 
-    @PostMapping("/api/register")
-    public User register(@RequestBody User user) {
-        //session.setAttribute("currentUser", user);
-        //users.add(user);
-        return user;
-    }
-
-//    @GetMapping("/api/profile")
-//    public User profile(HttpSession session) {
-//        User currentUser = (User) session.getAttribute("currentUser");
-//        return currentUser;
-//    }
-//    Update unfinished
-
-    @PostMapping("/api/login")
-    public User login(@RequestBody User credentials) {
-        User user = userRepository.findPersonByCredentials(credentials.getUsername(),credentials.getPassword());
-        if(user!=null){
-            //session.setAttribute("currentUser", user);
-            return user;
-        }
-        return null;
-    }
-
     @PostMapping("/api/user/{userId}/following/{playerId}")
     public void addFollowing(
             @PathVariable("userId") int userId,

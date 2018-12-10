@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "*", allowCredentials = "true", allowedHeaders = "*")
 public class GameService {
 
-  @GetMapping("/api/game/{gameId}")
-  public String getGameStats(@PathVariable("gameId") String gameId) throws UnirestException {
+  @GetMapping("/api/game/{gameId}/details")
+  public String getGameDetails(@PathVariable("gameId") String gameId) throws UnirestException {
 
     HttpResponse<JsonNode> jsonResponse = Unirest
         .get("http://api.sportradar.us/nfl/official/trial/v5/en/games/" + gameId + "/statistics.json")
