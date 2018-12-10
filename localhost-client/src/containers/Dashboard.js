@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom'
 import NavBar from '../components/NavBar'
 import SearchBar from '../components/SearchBar'
 import '../styles/dashboard.style.client.css'
@@ -37,14 +37,15 @@ export default class Dashboard extends Component {
                         <div className="container search-bar">
                             <div className="row">
                                 <div className="col-md-12">
-                                    <SearchBar />
+                                    {/*<SearchBar />*/}
                                 </div>
                             </div>
                         </div>
                     } />
                     <Route exact path="/(home|)" render={() =>
                         <div>
-                            <FavoriteComponent />
+                            {sessionStorage.getItem('currentUser') !==null &&
+                            <FavoriteComponent dashOrProf='Dash'/>}
                             <div className="container-fluid dash-box">
                                 <div className="row">
                                     <div className="col-md-6 justify-content-center">
@@ -53,7 +54,7 @@ export default class Dashboard extends Component {
                                                 Games Schedule
                                             </div>
                                             <div className="card-body pre-scrollable">
-                                                <ScheduleBox />
+                                                {/*<ScheduleBox />*/}
                                             </div>
                                         </div>
                                     </div>
@@ -63,7 +64,7 @@ export default class Dashboard extends Component {
                                                 Team Standings
                                             </div>
                                             <div className="card-body pre-scrollable">
-                                                <StandingsBox />
+                                                {/*<StandingsBox />*/}
                                             </div>
                                         </div>
                                     </div>
@@ -71,12 +72,13 @@ export default class Dashboard extends Component {
                             </div>
                         </div>
                     } />
-                    <Route exact path="/search" component={SearchResults} />
+                    {/*<Route exact path="/search" component={SearchResults} />*/}
                     {/*<Route exact path="/comment" component={CommentBox} />*/}
                     <Route exact path="/details" component={DetailsComponent} />
                     <Route exact path="/login" component={Login}/>
                     <Route exact path="/register" component={Register}/>
-                    <Route exact path="/:userId/profile/:edit" component={Profile}/>
+                    <Route exact path="/profile/:userId/:edit" component={Profile}/>
+                    {/*<Route path="/profile/:userId" render={() => (<Redirect to="/profile/:userId/false"/>)}/>*/}
                 </div>
             </Router>
         );

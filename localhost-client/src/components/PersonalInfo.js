@@ -7,24 +7,36 @@ class PersonalInfo extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            info: UserService.getInfo(this.props.userId),
+            info: {},
             isSelf: this.props.isSelf,
             isEdit: this.props.isEdit
         }
+        UserService.getInfo(this.props.userId).then(res => {
+            if(res.status===500) {
+                alert("No Such User")
+                this.props.history.push('/')
+            }else
+                this.setState({
+                    info: res,
+                })})
     }
 
     componentWillUpdate(newProps) {
         if (this.props !== newProps) {
-            this.setState({
-                info: UserService.getInfo(newProps.userId),
-                isSelf: newProps.isSelf,
-                isEdit: newProps.isEdit
-            })
+            UserService.getInfo(newProps.userId).then(res => {
+                if(res.status===500)
+                    this.props.history.push('/')
+                else
+                    this.setState({
+                    info: res,
+                    isSelf: newProps.isSelf,
+                    isEdit: newProps.isEdit
+                })})
         }
     }
 
     edit = () => {
-        this.props.history.push('/' + this.props.userId + '/profile/true')
+        this.props.history.push('/profile/' + this.props.userId + '/true')
     };
 
     update = () => {
@@ -35,8 +47,8 @@ class PersonalInfo extends Component {
             lastName: document.getElementById("lastName").value,
             email: document.getElementById("email").value,
         };
-        UserService.updateUser(user.id, user);
-        this.props.history.push('/' + this.props.userId + '/profile/false')
+        UserService.updateUser(user).then((res) =>
+        this.props.history.push('/profile/' + this.props.userId + '/false'))
     };
 
     logOut = () => {
@@ -47,7 +59,8 @@ class PersonalInfo extends Component {
     render() {
         return (
             <div>
-                {this.state.info != null &&
+                {console.log(this.state)}
+                {this.state.info !== null &&
                     (this.state.isEdit !== 'true' ||
                         (this.state.isEdit === 'true' && !this.state.isSelf)) &&
                     <div className="pI-body">
@@ -80,7 +93,7 @@ class PersonalInfo extends Component {
                                 Log out
                     </button>}
                     </div>}
-                {this.state.info != null && this.state.isEdit === 'true' && this.state.isSelf &&
+                {this.state.info !== null && this.state.isEdit === 'true' && this.state.isSelf &&
                     <div className="pI-body">
                         <div>
                             <i className="fa fa-5x fa-user" />

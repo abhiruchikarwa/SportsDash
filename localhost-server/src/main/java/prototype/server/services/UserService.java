@@ -25,6 +25,36 @@ public class UserService {
     @Autowired
     TeamRepository teamRepository;
 
+    @PostMapping("/api/user/login")
+    public User login(@RequestBody User user){
+        return userRepository.findPersonByCredentials(user.getUsername(),user.getPassword());
+    }
+
+    @PostMapping("/api/user/register")
+    public User register(@RequestBody User user){
+        if(userRepository.findPersonByUsername(user.getUsername())!=null)
+            return null;
+        else{
+            userRepository.save(user);
+            return user;
+        }
+    }
+
+    @GetMapping("/api/user/{userId}")
+    public User findUserById(@PathVariable ("userId") int userId){
+        return userRepository.findById(userId).get();
+    }
+
+    @PutMapping("/api/user/update")
+    public void update(@RequestBody User user){
+        User u = userRepository.findById(user.getId()).get();
+        u.setPassword(user.getPassword());
+        u.setFirstName(user.getFirstName());
+        u.setLastName(user.getLastName());
+        u.setEmail(user.getEmail());
+        userRepository.save(u);
+    }
+
     @PostMapping("/api/user/{userId}/following/{playerId}")
     public void addFollowing(
             @PathVariable("userId") int userId,

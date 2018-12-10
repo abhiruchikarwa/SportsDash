@@ -8,17 +8,21 @@ class FavoriteComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            dashOrProf: this.props.dashOrProf,
             favoriteTeams: [],
             followingPlayers: []
         }
     }
 
     componentDidMount() {
-        UserService.getFavoriteTeams(1)
+        let curuid = sessionStorage.getItem('currentUser')
+        let profileuid = this.props.match.params.userId;
+        let uid = this.state.dashOrProf==='Dash'?sessionStorage.getItem('currentUser'):this.props.match.params.userId;
+        UserService.getFavoriteTeams(uid)
             .then(favTeams => this.setState({
                 favoriteTeams: favTeams
             }))
-            .then(() => UserService.getFollowingPlayers(1)
+            .then(() => UserService.getFollowingPlayers(uid)
                 .then(followingPlayers => this.setState({
                     followingPlayers: followingPlayers
                 })));
@@ -32,7 +36,7 @@ class FavoriteComponent extends Component {
                         <div className="col-md-12">
                             <div className="card">
                                 <div className="card-header text-center heading-text">
-                                    Your Favorites
+                                    Favorites
                                 </div>
                                 <div className="card-body row scrollable justify-content-center">
                                     <div className="card card-subtitle col-md-12">

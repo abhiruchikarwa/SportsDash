@@ -6,7 +6,7 @@ class NavBar extends Component {
     login = () => {
         const curId = sessionStorage.getItem('currentUser');
         if (curId != null)
-            this.props.history.push('/' + curId + '/profile/false')
+            this.props.history.push('/profile/' + curId + '/false')
         else
             this.props.history.push('/login')
     };

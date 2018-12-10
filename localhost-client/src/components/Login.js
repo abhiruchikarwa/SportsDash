@@ -17,9 +17,14 @@ class Login extends Component {
             username: document.getElementById("username").value,
             password: document.getElementById("password").value,
         }
-        let userId = UserService.login(user)
-        sessionStorage.setItem('currentUser', userId);
-        this.props.history.push('/'+ userId +'/profile/false')
+        if(user.username==="" || user.password==="")
+            alert("Username and Password can't be empty")
+        else {
+            UserService.login(user).then(res => {
+                sessionStorage.setItem('currentUser', res.id);
+                this.props.history.push('/profile/' + res.id + '/false')
+            })
+        }
     }
 
     render(){

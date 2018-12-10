@@ -31,6 +31,7 @@ const CommentBox = () => {
                         }
                     </ul>
                 </div>
+                {sessionStorage.getItem('currentUser') !== null &&
                 <div className="card-footer">
                     <div className="row">
                         <div className="col-md-11">
@@ -40,7 +41,7 @@ const CommentBox = () => {
                             <button className="comment-button">Send</button>
                         </div>
                     </div>
-                </div>
+                </div>}
             </div>
         </div>
     )

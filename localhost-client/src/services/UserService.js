@@ -1,47 +1,52 @@
-import constants from '../constants/constants'
 import UserData from './users'
+import constants from "../constants/constants";
+const USER_API = 'http://localhost:8080/api/user'
 
 export default class UserService {
 
-    static login = (user) => {
-        for (var u in UserData) {
-            if (UserData[u].username === user.username && UserData[u].password === user.password) {
-                return UserData[u].id
-            }
-        }
-        return "No match"
-    }
+    static login = (user) =>
+        fetch(USER_API + '/login', {
+            body: JSON.stringify(user),
+            headers: {'Content-Type': 'application/json'},
+            method: 'POST'
+        }).then(response => response.json())
+            .catch(error => {
+                alert("Wrong Username and Password")
+                return Promise.reject("Wrong Username and Password")
+            })
 
-    static register = (user) => {
-        for (var u in UserData) {
-            if (UserData[u].username === user.username) {
-                return "Username already exist"
-            }
-        }
-        if (user.playerId !== "FAN") {
-            user.team = {}
-            user.seasons = []
-        }
-        UserData.push(user)
-        return user.id
-    }
+    static register = (user) =>
+        fetch(USER_API + '/register', {
+            body: JSON.stringify(user),
+            headers: {'Content-Type': 'application/json'},
+            method: 'POST'
+        }).then(response => response.json())
+            .catch(error => {
+                alert("Username exist")
+                return Promise.reject("Username exist")
+            })
 
     static getInfo = (userId) =>
-        UserData.find((user) => user.id === userId)
+        fetch(USER_API + '/' +userId, {
+            method: 'GET'
+        }).then(response => response.json())
+            .catch(error => {
+                alert("No Such User")
+                return Promise.reject("No Such User")
+            })
 
-    static updateUser = (userId, user) => {
-        for (var u in UserData) {
-            if (UserData[u].id === user.id) {
-                UserData[u].password = user.password
-                UserData[u].firstName = user.firstName
-                UserData[u].lastName = user.lastName
-                UserData[u].email = user.email
-            }
-        }
-    }
+    static updateUser = (user) =>
+        fetch(USER_API + '/update', {
+            body: JSON.stringify(user),
+            headers: {'Content-Type': 'application/json'},
+            method: 'PUT'
+        }).catch(error => {
+                alert("Update Fail")
+                return Promise.reject("Username exist")
+            })
 
     static getFollowingPlayers = (userId) => {
-        return fetch(constants.BASE_URL + 'api/user/' + userId + '/following', {
+        return fetch(USER_API + '/' + userId + '/following', {
             method: 'GET',
             mode: "cors",
             credentials: 'include'
@@ -51,7 +56,7 @@ export default class UserService {
     };
 
     static getFavoriteTeams = (userId) => {
-        return fetch(constants.BASE_URL + 'api/user/' + userId + '/favorite', {
+        return fetch(USER_API + '/' + userId + '/favorite', {
             method: 'GET',
             mode: "cors",
             credentials: 'include'

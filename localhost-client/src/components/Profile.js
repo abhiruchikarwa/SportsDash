@@ -10,9 +10,8 @@ class Profile extends Component {
         super(props)
         const uid = this.props.match.params.userId;
         const isEdit = this.props.match.params.edit;
-        //const urlParams = new URLSearchParams(this.props.location.search)
-        //const curId = urlParams.get('id')
         const curId = sessionStorage.getItem('currentUser')
+        this.followed = false
         this.state = {
             userId: uid,
             isEdit: isEdit,
@@ -22,6 +21,7 @@ class Profile extends Component {
 
     componentWillUpdate(newProps) {
         if (this.props !== newProps) {
+            this.followed = true
             this.setState({
                 userId: newProps.match.params.userId,
                 isEdit: newProps.match.params.edit,
@@ -40,10 +40,14 @@ class Profile extends Component {
                                 userId={this.state.userId}
                                 isEdit={this.state.isEdit}
                                 isSelf={this.state.isSelf} />
+                            {!this.state.isSelf && !this.followed &&
+                            <button className='pI-button'>Follow</button>}
+                            {!this.state.isSelf && this.followed &&
+                            <button className='pI-button'>Unfollow</button>}
                         </div>
                         <div className="profile-right col-sm-9">
                             <CommentBox />
-                            <FavoriteComponent />
+                            <FavoriteComponent dashOrProf='Prof'/>
                         </div>
 
                     </div>
