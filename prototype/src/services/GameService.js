@@ -3,7 +3,7 @@ import constants from '../constants/constants'
 export default class GameService {
 
     static getGameDetails = (gameId) => {
-        return fetch(constants.BASE_URL + 'api/game/' + gameId, {
+        return fetch(constants.BASE_URL + 'api/game/' + gameId + '/details', {
             method: 'GET',
             mode: "cors",
             credentials: 'include'

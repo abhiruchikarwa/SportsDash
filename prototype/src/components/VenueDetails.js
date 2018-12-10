@@ -35,26 +35,26 @@ class VenueDetails extends Component {
                 </div>
                 <div className="card-body text-center">
                   <div className="card">
-                    <img className="card-img" src={VenueService.getVenueImage('random')} alt="venue" />
+                    <img className="card-img" src={VenueService.getVenueImage(this.state.venue.name)} alt="venue" />
                     <div class="card-img-overlay">
                       <div className="card-body text-center">
-                        <ul class="list-group list-group-flush col-3 schedule-card:hover">
-                          {!_.isEmpty(this.state.venue.address) && <li class="list-group-item">
+                        <ul class="list-group col-3 venue-card">
+                          {!_.isEmpty(this.state.venue.address) && <li class="list-group-item match-details">
                             Address - {this.state.venue.address}, {this.state.venue.city}  - {this.state.venue.zip}
                           </li>}
-                          {!_.isEmpty(this.state.venue.state) && <li class="list-group-item">
+                          {!_.isEmpty(this.state.venue.state) && <li class="list-group-item match-details">
                             State - {this.state.venue.state}
                           </li>}
-                          {!_.isEmpty(this.state.venue.country) && <li class="list-group-item">
+                          {!_.isEmpty(this.state.venue.country) && <li class="list-group-item match-details">
                             Country - {this.state.venue.country}
                           </li>}
-                          {!_.isEmpty(this.state.venue.surface) && <li class="list-group-item">
+                          {!_.isEmpty(this.state.venue.surface) && <li class="list-group-item match-details">
                             Surface - {this.state.venue.surface}
                           </li>}
-                          {!_.isEmpty(this.state.venue.roofType) && <li class="list-group-item">
+                          {!_.isEmpty(this.state.venue.roofType) && <li class="list-group-item match-details">
                             Roof type - {this.state.venue.roofType}
                           </li>}
-                          {!_.isEmpty(this.state.venue.capacity) && <li class="list-group-item">
+                          {!_.isEmpty(this.state.venue.capacity) && <li class="list-group-item match-details">
                             Capacity - {this.state.venue.capacity}
                           </li>}
                         </ul>

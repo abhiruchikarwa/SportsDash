@@ -35,7 +35,7 @@ import us_bank_stadium from '../resources/images/venue_images/us_bank_stadium.jp
 export default class VenueService {
 
     static getVenueDetails = (venueId) => {
-        return fetch(constants.BASE_URL + 'api/venue/' + venueId, {
+        return fetch(constants.BASE_URL + 'api/venue/' + venueId + '/details', {
             method: 'GET',
             mode: "cors",
             credentials: 'include'
@@ -45,6 +45,7 @@ export default class VenueService {
     };
 
     static getVenueImage = (teamName) => {
+        console.log(teamName);
         switch (teamName) {
             case 'Arrowhead Stadium':
                 return arrowhead_stadium;
@@ -52,17 +53,17 @@ export default class VenueService {
                 return atandt_stadium;
             case 'Bank of America Stadium':
                 return bank_of_america_stadium;
-            case 'Broncos Stadium Mile High':
+            case 'Broncos Stadium at Mile High':
                 return broncos_stadium_mile_high;
             case 'Centurylink Field':
                 return centurylink_field;
-            case 'FedEx Field':
+            case 'FedExField':
                 return fedex_field;
-            case 'First Energy Stadium':
+            case 'FirstEnergy Stadium':
                 return first_energy_stadium;
             case 'Ford Field':
                 return ford_field;
-            case 'Gilette Stadium':
+            case 'Gillette Stadium':
                 return gillette_stadium;
             case 'Hard Rock Stadium':
                 return hard_rock_stadium;
@@ -70,7 +71,7 @@ export default class VenueService {
                 return heinz_field;
             case 'Lambeau Field':
                 return lambeau_field;
-            case 'Levis Stadium':
+            case 'Levi\'s Stadium':
                 return levis_stadium;
             case 'Lincoln Financial Field':
                 return lincoln_financial_field;
@@ -80,9 +81,9 @@ export default class VenueService {
                 return lucas_oil_stadium;
             case 'M&T Bank Stadium':
                 return mandt_bank_stadium;
-            case 'Mercedes Benz Stadium':
+            case 'Mercedes-Benz Stadium':
                 return mercedes_benz_stadium;
-            case 'Mercedes Benz Superdome':
+            case 'Mercedes-Benz Superdome':
                 return mercedes_benz_superdome;
             case 'MetLife Stadium':
                 return metLife_stadium;
@@ -102,11 +103,11 @@ export default class VenueService {
                 return soldier_field;
             case 'State Farm Stadium':
                 return state_farm_stadium;
-            case 'StubHub Center':
+            case 'University of Phoenix Stadium':
                 return stubhub_center;
             case 'TIAA Bank Field':
                 return tiaa_bank_field;
-            case 'US Bank Stadium':
+            case 'U.S. Bank Stadium':
                 return us_bank_stadium;
             default:
                 return ""

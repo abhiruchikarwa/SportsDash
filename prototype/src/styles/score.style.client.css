@@ -7,3 +7,11 @@
     height: 20vh !important;
     overflow-y: scroll;
 }
+
+.venue-card {
+    box-shadow: 1px 2px 5px #0000004f;
+    margin-bottom: 5px !important;
+    transition: transform .2s;
+    border-radius: 20px;
+    padding: 20px; 
+}
