@@ -45,6 +45,16 @@ export default class TeamService {
             .catch(error => console.log(error));
     };
 
+    static getTeamByApiId = (api_id) => {
+        return fetch(constants.BASE_URL + 'api/team/' + api_id + '/api_id/', {
+            method: 'GET',
+            mode: "cors",
+            credentials: 'include'
+        })
+            .then(res => res.json())
+            .catch(error => console.log(error));
+    };
+
     static getTeamLogo = (teamName) => {
         switch (teamName) {
             case 'Arizona Cardinals':

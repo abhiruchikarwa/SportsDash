@@ -1,7 +1,7 @@
-package prototype.server.repository;
+package localhostServer.server.repository;
 
 import org.springframework.data.repository.CrudRepository;
-import prototype.server.models.Comment;
+import localhostServer.server.models.Comment;
 
 public interface CommentRepository extends CrudRepository<Comment, Integer> {
 }

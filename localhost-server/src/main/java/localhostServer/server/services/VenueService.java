@@ -1,10 +1,10 @@
-package prototype.server.services;
+package localhostServer.server.services;
 
+import localhostServer.server.repository.VenueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import prototype.server.models.Venue;
-import prototype.server.models.VenueWrapper;
-import prototype.server.repository.VenueRepository;
+import localhostServer.server.models.Venue;
+import localhostServer.server.models.VenueWrapper;
 
 import java.util.List;
 

@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom'
+import React, {Component} from 'react';
+import {BrowserRouter as Router, Route} from 'react-router-dom'
 import NavBar from '../components/NavBar'
 import SearchBar from '../components/SearchBar'
 import '../styles/dashboard.style.client.css'
@@ -11,6 +11,8 @@ import DetailsComponent from '../components/DetailsComponent';
 import Profile from "../components/Profile";
 import Register from "../components/Register";
 import Login from "../components/Login";
+import CommentBox from "../components/CommentBox";
+
 export default class Dashboard extends Component {
     constructor(props) {
         super(props);
@@ -29,7 +31,7 @@ export default class Dashboard extends Component {
                     <div className="container">
                         <div className="row">
                             <div className="col-md-12">
-                                <NavBar />
+                                <NavBar/>
                             </div>
                         </div>
                     </div>
@@ -37,14 +39,14 @@ export default class Dashboard extends Component {
                         <div className="container search-bar">
                             <div className="row">
                                 <div className="col-md-12">
-                                    {/*<SearchBar />*/}
+                                    <SearchBar/>
                                 </div>
                             </div>
                         </div>
-                    } />
+                    }/>
                     <Route exact path="/(home|)" render={() =>
                         <div>
-                            {sessionStorage.getItem('currentUser') !==null &&
+                            {sessionStorage.getItem('currentUser') !== null &&
                             <FavoriteComponent dashOrProf='Dash'/>}
                             <div className="container-fluid dash-box">
                                 <div className="row">
@@ -54,7 +56,7 @@ export default class Dashboard extends Component {
                                                 Games Schedule
                                             </div>
                                             <div className="card-body pre-scrollable">
-                                                {/*<ScheduleBox />*/}
+                                                <ScheduleBox/>
                                             </div>
                                         </div>
                                     </div>
@@ -64,17 +66,17 @@ export default class Dashboard extends Component {
                                                 Team Standings
                                             </div>
                                             <div className="card-body pre-scrollable">
-                                                {/*<StandingsBox />*/}
+                                                <StandingsBox/>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    } />
-                    {/*<Route exact path="/search" component={SearchResults} />*/}
-                    {/*<Route exact path="/comment" component={CommentBox} />*/}
-                    <Route exact path="/details" component={DetailsComponent} />
+                    }/>
+                    <Route exact path="/search" component={SearchResults}/>
+                    <Route exact path="/comment" component={CommentBox}/>
+                    <Route exact path="/details" component={DetailsComponent}/>
                     <Route exact path="/login" component={Login}/>
                     <Route exact path="/register" component={Register}/>
                     <Route exact path="/profile/:userId/:edit" component={Profile}/>

@@ -1,4 +1,4 @@
-package prototype.server;
+package localhostServer.server;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

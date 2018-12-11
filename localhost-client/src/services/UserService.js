@@ -1,11 +1,9 @@
-import UserData from './users'
 import constants from "../constants/constants";
-const USER_API = 'http://localhost:8080/api/user'
 
 export default class UserService {
 
     static login = (user) =>
-        fetch(USER_API + '/login', {
+        fetch(constants.BASE_URL + '/login', {
             body: JSON.stringify(user),
             headers: {'Content-Type': 'application/json'},
             method: 'POST'
@@ -13,10 +11,10 @@ export default class UserService {
             .catch(error => {
                 alert("Wrong Username and Password")
                 return Promise.reject("Wrong Username and Password")
-            })
+            });
 
     static register = (user) =>
-        fetch(USER_API + '/register', {
+        fetch(constants.BASE_URL + '/register', {
             body: JSON.stringify(user),
             headers: {'Content-Type': 'application/json'},
             method: 'POST'
@@ -24,29 +22,29 @@ export default class UserService {
             .catch(error => {
                 alert("Username exist")
                 return Promise.reject("Username exist")
-            })
+            });
 
     static getInfo = (userId) =>
-        fetch(USER_API + '/' +userId, {
+        fetch(constants.BASE_URL + '/' + userId, {
             method: 'GET'
         }).then(response => response.json())
             .catch(error => {
                 alert("No Such User")
                 return Promise.reject("No Such User")
-            })
+            });
 
     static updateUser = (user) =>
-        fetch(USER_API + '/update', {
+        fetch(constants.BASE_URL + '/update', {
             body: JSON.stringify(user),
             headers: {'Content-Type': 'application/json'},
             method: 'PUT'
         }).catch(error => {
-                alert("Update Fail")
-                return Promise.reject("Username exist")
-            })
+            alert("Update Fail")
+            return Promise.reject("Username exist")
+        });
 
     static getFollowingPlayers = (userId) => {
-        return fetch(USER_API + '/' + userId + '/following', {
+        return fetch(constants.BASE_URL + '/' + userId + '/following', {
             method: 'GET',
             mode: "cors",
             credentials: 'include'
@@ -55,8 +53,90 @@ export default class UserService {
             .catch(error => console.log(error));
     };
 
+    static addFollowingPlayer = (userId, playerId) => {
+        return fetch(constants.BASE_URL + 'api/user/' + userId + '/following/' + playerId, {
+            method: "POST",
+            mode: "cors",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json; charset=utf-8",
+            },
+        })
+            .then(res => res.json())
+            .catch(error => console.log(error));
+    };
+
+    static removeFollowingPlayer = (userId, playerId) => {
+        return fetch(constants.BASE_URL + 'api/user/' + userId + '/following/' + playerId, {
+            method: 'DELETE',
+            mode: "cors",
+            credentials: 'include'
+        })
+            .then(res => res.json())
+            .catch(error => console.log(error));
+    };
+
     static getFavoriteTeams = (userId) => {
-        return fetch(USER_API + '/' + userId + '/favorite', {
+        return fetch(constants.BASE_URL + 'api/user/' + userId + '/favorite', {
+            method: 'GET',
+            mode: "cors",
+            credentials: 'include'
+        })
+            .then(res => res.json())
+            .catch(error => console.log(error));
+    };
+
+    static addFavoriteTeam = (userId, teamId) => {
+        return fetch(constants.BASE_URL + 'api/user/' + userId + '/favorite/' + teamId, {
+            method: "POST",
+            mode: "cors",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json; charset=utf-8",
+            },
+        })
+            .then(res => res.json())
+            .catch(error => console.log(error));
+    };
+
+    static removeFavoriteTeam = (userId, teamId) => {
+        return fetch(constants.BASE_URL + 'api/user/' + userId + '/following/' + teamId, {
+            method: 'DELETE',
+            mode: "cors",
+            credentials: 'include'
+        })
+            .then(res => res.json())
+            .catch(error => console.log(error));
+    };
+
+    static comments = [{id: 1,}];
+
+    static addComment = (userId, playerId, comment) => {
+        return fetch(constants.BASE_URL + 'api/user/' + userId + '/comment/' + playerId, {
+            method: "POST",
+            mode: "cors",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json; charset=utf-8",
+            },
+            body: JSON.stringify(comment),
+        })
+            .then(res => res.json())
+            .catch(error => console.log(error))
+    };
+
+    static deleteComment = (commentId) => {
+        return fetch(constants.BASE_URL + 'api/comment/' + commentId, {
+            method: 'DELETE',
+            mode: "cors",
+            credentials: 'include'
+        })
+            .then(res => res.json())
+            .catch(error => console.log(error));
+    };
+
+    static getCommentsByUser = (userId) => {
+        return fetch(constants.BASE_URL + '/api/user/' + userId + '/comment', {
             method: 'GET',
             mode: "cors",
             credentials: 'include'

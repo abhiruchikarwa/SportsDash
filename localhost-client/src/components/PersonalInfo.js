@@ -59,7 +59,6 @@ class PersonalInfo extends Component {
     render() {
         return (
             <div>
-                {console.log(this.state)}
                 {this.state.info !== null &&
                     (this.state.isEdit !== 'true' ||
                         (this.state.isEdit === 'true' && !this.state.isSelf)) &&

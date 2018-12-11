@@ -1,13 +1,13 @@
-package prototype.server.services;
+package localhostServer.server.services;
 
+import localhostServer.server.repository.CommentRepository;
+import localhostServer.server.repository.PlayerRepository;
+import localhostServer.server.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import prototype.server.models.Comment;
-import prototype.server.models.Player;
-import prototype.server.models.User;
-import prototype.server.repository.CommentRepository;
-import prototype.server.repository.PlayerRepository;
-import prototype.server.repository.UserRepository;
+import localhostServer.server.models.Comment;
+import localhostServer.server.models.Player;
+import localhostServer.server.models.User;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ public class CommentService {
     UserRepository userRepository;
 
     @PostMapping("/api/user/{userId}/comment/{playerId}")
-    public void addFollowing(
+    public List<Comment> addComment(
             @PathVariable("userId") int userId,
             @PathVariable("playerId") int playerId,
             @RequestBody Comment comment) {
@@ -37,11 +37,13 @@ public class CommentService {
             comment.setUser(user);
             comment.setPlayer(player);
             commentRepository.save(comment);
+            return findCommentsForPlayer(playerId);
         }
+        return null;
     }
 
     @GetMapping("/api/user/{userId}/comment")
-    public List<Comment> finCommentsByUser(
+    public List<Comment> findCommentsByUser(
             @PathVariable("userId") int userId) {
 
         if (userRepository.findById(userId).isPresent()) {
@@ -52,7 +54,7 @@ public class CommentService {
     }
 
     @GetMapping("/api/player/{playerId}/comment")
-    public List<Comment> finCommentsForPlayer(
+    public List<Comment> findCommentsForPlayer(
             @PathVariable("playerId") int playerId) {
 
         if (playerRepository.findById(playerId).isPresent()) {

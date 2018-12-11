@@ -20,7 +20,6 @@ class PlayerDetails extends Component {
   }
 
   render() {
-    console.log(this.state.player);
     return (
       <div className='profile-content'>
         <div className='profile-body'>

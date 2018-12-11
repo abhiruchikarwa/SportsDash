@@ -1,4 +1,4 @@
-package prototype.server.models;
+package localhostServer.server.models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

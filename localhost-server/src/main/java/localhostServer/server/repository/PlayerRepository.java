@@ -1,9 +1,10 @@
-package prototype.server.repository;
+package localhostServer.server.repository;
 
+import localhostServer.server.models.Team;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
-import prototype.server.models.Player;
+import localhostServer.server.models.Player;
 
 import java.util.List;
 
@@ -13,4 +14,7 @@ public interface PlayerRepository extends CrudRepository<Player, Integer> {
     List<Player> findMatchingPlayers
             (@Param("filterString") String filterString);
 
+    @Query("SELECT player FROM Player player WHERE player.api_id=:api_id")
+    Player findPlayerByApiId
+            (@Param("api_id") String api_id);
 }

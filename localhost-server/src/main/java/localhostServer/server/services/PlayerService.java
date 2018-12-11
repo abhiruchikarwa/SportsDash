@@ -1,14 +1,14 @@
-package prototype.server.services;
+package localhostServer.server.services;
 
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import localhostServer.server.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import prototype.server.models.Player;
-import prototype.server.models.PlayerWrapper;
-import prototype.server.repository.PlayerRepository;
+import localhostServer.server.models.Player;
+import localhostServer.server.models.PlayerWrapper;
 
 import java.util.List;
 
@@ -24,7 +24,7 @@ public class PlayerService {
 
         HttpResponse<JsonNode> jsonResponse = Unirest
                 .get("http://api.sportradar.us/nfl/official/trial/v5/en/players/" + playerId + "/profile.json")
-                .header("accept", "application/json").queryString("api_key", "3kgzp5wm7ryn7pw6tatkr793").asJson();
+                .header("accept", "application/json").queryString("api_key", "3gmsn3sbfgus6hw96bs6pyya").asJson();
 
         return jsonResponse.getBody().toString();
     }
@@ -39,6 +39,11 @@ public class PlayerService {
     public Player findPlayerById(
             @PathVariable("playerId") int playerId) {
         return playerRepository.findById(playerId).orElse(null);
+    }
+
+    @GetMapping("/api/player/{playerId}/api_id")
+    public Player findPlayerByApiId(@PathVariable("playerId") String playerId) {
+        return playerRepository.findPlayerByApiId(playerId);
     }
 
     @GetMapping("/api/player")

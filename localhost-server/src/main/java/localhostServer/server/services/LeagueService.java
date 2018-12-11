@@ -1,4 +1,4 @@
-package prototype.server.services;
+package localhostServer.server.services;
 
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
@@ -18,7 +18,7 @@ public class LeagueService {
 
         HttpResponse<JsonNode> jsonResponse = Unirest
                 .get("http://api.sportradar.us/nfl/official/trial/v5/en/league/hierarchy.json")
-                .header("accept", "application/json").queryString("api_key", "3kgzp5wm7ryn7pw6tatkr793").asJson();
+                .header("accept", "application/json").queryString("api_key", "3gmsn3sbfgus6hw96bs6pyya").asJson();
 
         return jsonResponse.getBody().toString();
     }
@@ -28,7 +28,7 @@ public class LeagueService {
 
         HttpResponse<JsonNode> jsonResponse = Unirest
                 .get("http://api.sportradar.us/nfl/official/trial/v5/en/seasons/2018/standings.json")
-                .header("accept", "application/json").queryString("api_key", "3kgzp5wm7ryn7pw6tatkr793").asJson();
+                .header("accept", "application/json").queryString("api_key", "3gmsn3sbfgus6hw96bs6pyya").asJson();
 
         return jsonResponse.getBody().toString();
     }
@@ -39,7 +39,7 @@ public class LeagueService {
 
         HttpResponse<JsonNode> jsonResponse = Unirest
                 .get("http://api.sportradar.us/nfl/official/trial/v5/en/games/2018/REG/" + weekNumber + "/schedule.json")
-                .header("accept", "application/json").queryString("api_key", "3kgzp5wm7ryn7pw6tatkr793").asJson();
+                .header("accept", "application/json").queryString("api_key", "3gmsn3sbfgus6hw96bs6pyya").asJson();
 
         return jsonResponse.getBody().toString();
     }

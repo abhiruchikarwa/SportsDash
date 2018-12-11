@@ -1,0 +1,14 @@
+.un-fav-button {
+    background: #d60000;
+    border: #d60000;
+    border-radius: 50px !important;
+    color: white;
+}
+
+.fav-button {
+    border-radius: 50px !important;
+}
+
+.fav-button-div {
+    margin-top: 1px !important;
+}

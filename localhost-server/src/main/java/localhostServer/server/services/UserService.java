@@ -1,13 +1,13 @@
-package prototype.server.services;
+package localhostServer.server.services;
 
+import localhostServer.server.repository.PlayerRepository;
+import localhostServer.server.repository.TeamRepository;
+import localhostServer.server.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import prototype.server.models.Player;
-import prototype.server.models.Team;
-import prototype.server.models.User;
-import prototype.server.repository.PlayerRepository;
-import prototype.server.repository.TeamRepository;
-import prototype.server.repository.UserRepository;
+import localhostServer.server.models.Player;
+import localhostServer.server.models.Team;
+import localhostServer.server.models.User;
 
 import java.util.Set;
 

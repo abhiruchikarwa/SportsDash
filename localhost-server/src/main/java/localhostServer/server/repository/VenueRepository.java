@@ -1,9 +1,9 @@
-package prototype.server.repository;
+package localhostServer.server.repository;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
-import prototype.server.models.Venue;
+import localhostServer.server.models.Venue;
 
 import java.util.List;
 

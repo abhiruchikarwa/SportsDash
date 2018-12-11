@@ -2,6 +2,10 @@
     margin-top: 0%;
 }
 
+.comment-card {
+    width: 100%;
+}
+
 .comment-section-body {
     padding-left: 3% !important;
     padding-right: 3% !important;
@@ -59,4 +63,21 @@
     -ms-transform: scale(1.04); /* IE 9 */
     -webkit-transform: scale(1.04); /* Safari 3-8 */
     transform: scale(1.04);
+}
+
+.delete-button {
+    float: right;
+    top: 0;
+    right: 0;
+    position: absolute;
+
+}
+
+.delete-button:hover {
+    cursor: pointer;
+    color: #a83c43;
+}
+
+.comment-player-name {
+    font-size: 12px;
 }

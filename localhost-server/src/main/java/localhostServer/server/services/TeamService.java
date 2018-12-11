@@ -1,14 +1,14 @@
-package prototype.server.services;
+package localhostServer.server.services;
 
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import localhostServer.server.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import prototype.server.models.Team;
-import prototype.server.models.TeamWrapper;
-import prototype.server.repository.TeamRepository;
+import localhostServer.server.models.Team;
+import localhostServer.server.models.TeamWrapper;
 
 import java.util.List;
 
@@ -24,7 +24,7 @@ public class TeamService {
 
         HttpResponse<JsonNode> jsonResponse = Unirest
                 .get("http://api.sportradar.us/nfl/official/trial/v5/en/teams/" + teamId + "/profile.json")
-                .header("accept", "application/json").queryString("api_key", "3kgzp5wm7ryn7pw6tatkr793").asJson();
+                .header("accept", "application/json").queryString("api_key", "3gmsn3sbfgus6hw96bs6pyya").asJson();
 
         return jsonResponse.getBody().toString();
     }
@@ -38,6 +38,11 @@ public class TeamService {
     public Team findTeamById(
             @PathVariable("teamId") int teamId) {
         return teamRepository.findById(teamId).orElse(null);
+    }
+
+    @GetMapping("/api/team/{teamId}/api_id")
+    public Team findTeamByApiId(@PathVariable("teamId") String teamId) {
+        return teamRepository.findTeamByApiId(teamId);
     }
 
     @GetMapping("/api/team")

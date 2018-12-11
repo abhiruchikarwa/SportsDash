@@ -1,4 +1,4 @@
-package prototype.server.models;
+package localhostServer.server.models;
 
 import java.util.List;
 
