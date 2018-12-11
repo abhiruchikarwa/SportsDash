@@ -110,7 +110,6 @@ class Register extends Component {
                         <select required id="type-input" className="form-control" onChange={this.handleTypeChange}>
                             <option value="USER">User</option>
                             <option value="PLAYER">Player</option>
-                            <option value="COACH">Coach</option>
                         </select>
                     </div>
                     <input className="btn-block login-register-button" type="submit" value="Register" />

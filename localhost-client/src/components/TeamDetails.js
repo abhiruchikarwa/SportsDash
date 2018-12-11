@@ -25,12 +25,14 @@ class TeamDetails extends Component {
 
         TeamService.getTeamByApiId(this.state.teamId)
             .then(currentTeam => team = currentTeam)
-            .then(() =>
-                UserService.getFavoriteTeams(this.state.currentUser.id)
-                    .then(favorite => {
-                        userFavorite = _.map(favorite, 'api_id');
-                    })
-                    .catch(userFavorite = []))
+            .then(() => {
+                if (this.state.currentUser) {
+                    UserService.getFavoriteTeams(this.state.currentUser.id)
+                        .then(favorite => {
+                            userFavorite = _.map(favorite, 'api_id');
+                        })
+                        .catch(userFavorite = [])
+                }})
             .then(() =>
                 TeamService.getTeamDetails(this.state.teamId)
                     .then(details => this.setState({

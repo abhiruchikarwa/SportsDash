@@ -27,12 +27,14 @@ class PlayerDetails extends Component {
 
     PlayerService.getPlayerByApiId(this.state.playerId)
       .then(player => currentPlayer = player)
-      .then(() =>
-        UserService.getFollowingPlayers(this.state.currentUser.id)
-          .then(following => {
-            userFollowing = _.map(following, 'api_id');
-          })
-          .catch(userFollowing = []))
+      .then(() => {
+          if (this.state.currentUser) {
+               UserService.getFollowingPlayers(this.state.currentUser.id)
+                  .then(following => {
+                      userFollowing = _.map(following, 'api_id');
+                  })
+                  .catch(userFollowing = [])
+      }})
       .then(() =>
         PlayerService.getPlayerDetails(this.state.playerId)
           .then(details => this.setState({
@@ -73,13 +75,7 @@ class PlayerDetails extends Component {
                   <ul className='list-group'>
                     <li className="list-group-item">
                       <div className="row justify-content-center align-items-center">
-                        {
-                          !this.state.currentUser ?
-                            <img src={player_img} alt="" width={"50%"} /> :
-                            (this.state.currentUser.type === "USER" ?
-                              <i className="fas fa-3x fa-user player-pic" /> :
-                              <img src={player_img} alt="" width={"50%"} />)
-                        }
+                            <img src={player_img} alt="" width={"50%"} />
                       </div>
                       <div className="row justify-content-center player-name">
                         {this.state.player.name}

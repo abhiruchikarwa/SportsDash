@@ -42,7 +42,7 @@ export default class CommentBoxForUser extends Component {
                 <div className="row">
                     <div className="card comment-card text-center">
                         <div className="card-header text-center heading-text">
-                            Comment Sections
+                            Comments By {this.state.userName}
                         </div>
                         <div id="commentSection"
                              className="card-body justify-content-center align-items-center comment-section-body">

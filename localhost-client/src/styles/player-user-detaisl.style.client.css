@@ -1,0 +1,15 @@
+.profile-comment, .profile-box, .profile-fav {
+    margin-top: 0 !important;
+}
+
+.profile-comment .comment-section-body {
+    min-height: 35vh;
+}
+
+.profile-comment .comment-section {
+    margin-bottom: 1%;
+}
+
+.profile-fav .scrollable {
+    max-height: 84vh !important;
+}

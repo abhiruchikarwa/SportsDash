@@ -23,7 +23,6 @@ class VenueDetails extends Component {
     }
 
     render() {
-        console.log(this.state.venue);
         return (
             <div>
                 <div className="container-fluid fav-box">

@@ -13,9 +13,25 @@
     margin-bottom: 5px !important;
     transition: transform .2s;
     border-radius: 20px;
-    padding: 20px; 
+    padding: 20px;
 }
 
 .game-venue {
     cursor: pointer;
+}
+
+.game-details-text {
+    font-size: 0.9rem;
+}
+
+.game-heading {
+    font-weight: 500;
+    font-size: 30px;
+    text-align: center;
+}
+
+.game-detail-heading {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 10px;
 }

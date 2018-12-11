@@ -1,4 +1,4 @@
-.profile-content{
+.profile-content {
     margin-top: 5%;
     padding-left: 2% !important;
     padding-right: 2% !important;
@@ -6,33 +6,33 @@
     margin-bottom: 2%;
 }
 
-.profile-body{
+.profile-body {
     top: 10%;
     padding-left: 2% !important;
     padding-right: 2% !important;
 }
 
-.profile-left{
+.profile-left {
     padding: 2% !important;
 }
 
-.profile-right{
+.profile-right {
     padding: 2% !important;
 }
 
-.pI-body{
+.pI-body {
     text-align: center;
     box-shadow: 0 1px 5px #2f2f2f;
     padding: 20px 10px 30px;
 }
 
-.pI-text{
+.pI-text {
     text-align: left;
     font-size: 15px;
     word-wrap: break-word
 }
 
-.pI-button{
+.pI-button {
     background-color: rgba(0, 38, 106, 0.75);
     color: white;
     margin-top: 20px;
@@ -43,11 +43,11 @@
     transition: transform .2s;
 }
 
-.pI-button:focus{
+.pI-button:focus {
     outline: none;
 }
 
-.pI-button:hover{
+.pI-button:hover {
     cursor: pointer;
     background-color: #01336a;
     -ms-transform: scale(1.04);
@@ -67,4 +67,41 @@
 
 .follow-section {
     margin-top: 7%;
+}
+
+.profile-comment, .profile-box, .profile-fav {
+    margin-top: 2%;
+}
+
+.profile-comment .comment-section-body {
+    min-height: 80vh;
+}
+
+.profile-fav .fav-card {
+    min-height: 86vh;
+}
+
+.profile-fav .scrollable {
+    max-height: 80vh !important;
+}
+
+.profile-comment .user-section {
+    margin-left: -50px;
+}
+
+.profile-comment .comment-username, .profile-comment .comment-time {
+    margin-left: 30%
+}
+
+@media (min-width: 768px) {
+    .profile-fav .col-md-2 {
+        -ms-flex: 0 0 16.666667%;
+        flex: 0 1 auto !important;
+        max-width: 100% !important;
+    }
+
+    .profile-fav .col-md-2 {
+        flex: 0 1 auto !important;
+        max-width: 100% !important;
+    }
 }

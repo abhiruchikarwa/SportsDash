@@ -13,20 +13,22 @@ export default class CommentBoxForPlayer extends Component {
             commentText: "",
             currentUser: user,
             currentPlayer: {},
-            userName: user.firstName + " " + user.lastName
+            userName: user ? user.firstName + " " + user.lastName : ""
         };
         this.handleCommentChange = this.handleCommentChange.bind(this)
     }
 
     componentDidMount() {
-        this.fetchCommentsForPlayer();
+        if (this.props.playerId) {
+            this.fetchCommentsForPlayer();
+        }
     }
 
     fetchCommentsForPlayer = () =>
         PlayerService.getPlayerByApiId(this.props.playerId)
             .then(player => this.setState({
                 currentPlayer: player,
-                comments: player.commentsReceived
+                comments: player ? player.commentsReceived : []
             }));
 
     handleCommentChange = (event) => this.setState({
@@ -53,13 +55,16 @@ export default class CommentBoxForPlayer extends Component {
     };
 
     render() {
-        console.log(this.state.comments)
         return (
             <div className="container comment-section">
                 <div className="row">
                     <div className="card comment-card text-center">
                         <div className="card-header text-center heading-text">
-                            Comment Sections
+                            {
+                                this.state.currentPlayer ?
+                                    <span>Comments For {this.state.currentPlayer.name}  </span>
+                                    : <span>Comments Section  </span>
+                            }
                         </div>
                         <div id="commentSection"
                              className="card-body justify-content-center align-items-center comment-section-body">
