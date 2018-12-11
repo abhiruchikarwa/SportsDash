@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import '../styles/favorite.style.client.css'
+import _ from 'lodash'
 import {withRouter} from 'react-router-dom'
 import TeamService from "../services/TeamService";
 import UserService from "../services/UserService";
@@ -7,15 +8,16 @@ import UserService from "../services/UserService";
 class FavoriteComponent extends Component {
     constructor(props) {
         super(props);
+        let user = JSON.parse(sessionStorage.getItem('user'));
         this.state = {
-            dashOrProf: this.props.dashOrProf,
             favoriteTeams: [],
-            followingPlayers: []
+            followingPlayers: [],
+            currentUser: user
         }
     }
 
     componentDidMount() {
-        let uid = this.state.dashOrProf === 'Dash' ? sessionStorage.getItem('currentUser') : this.props.match.params.userId;
+        let uid = _.includes(this.props.location.pathname, "profile") ? this.props.match.params.userId : this.state.currentUser.id;
         UserService.getFavoriteTeams(uid)
             .then(favTeams => this.setState({
                 favoriteTeams: favTeams
@@ -45,7 +47,7 @@ class FavoriteComponent extends Component {
                                             <div key={index}
                                                  className="card col-md-2 card-view-item shadow justify-content-center align-items-center">
                                                 <div
-                                                    onClick={() => this.props.history.push('/details?filter=teams&id=' + team.id)}
+                                                    onClick={() => this.props.history.push('/details?filter=teams&id=' + team.api_id)}
                                                     className="card-link justify-content-center align-items-center">
                                                     <div className="card-body align-items-center">
                                                         <img alt="logo" src={TeamService.getTeamLogo(team.name)}
@@ -64,7 +66,7 @@ class FavoriteComponent extends Component {
                                             <div key={index}
                                                  className="card col-md-2 card-view-item shadow justify-content-center align-items-center">
                                                 <div
-                                                    onClick={() => this.props.history.push('/details?filter=players&id=' + player.id)}
+                                                    onClick={() => this.props.history.push('/details?filter=players&id=' + player.api_id)}
                                                     className="card-link justify-content-center align-items-center">
                                                     <div className="card-body align-items-center">
                                                         <p className="card-title">{player.name}</p>

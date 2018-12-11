@@ -7,6 +7,8 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 import localhostServer.server.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import localhostServer.server.constants.Constants;
 import localhostServer.server.models.Team;
 import localhostServer.server.models.TeamWrapper;
 
@@ -18,13 +20,12 @@ public class TeamService {
 
     @Autowired
     TeamRepository teamRepository;
-    
+
     @GetMapping("/api/team/{teamId}/details")
     public String getTeamDetails(@PathVariable("teamId") String teamId) throws UnirestException {
 
-        HttpResponse<JsonNode> jsonResponse = Unirest
-                .get("http://api.sportradar.us/nfl/official/trial/v5/en/teams/" + teamId + "/profile.json")
-                .header("accept", "application/json").queryString("api_key", "3gmsn3sbfgus6hw96bs6pyya").asJson();
+        HttpResponse<JsonNode> jsonResponse = Unirest.get(Constants.API_URL + "teams/" + teamId + "/profile.json")
+                .header("accept", "application/json").queryString("api_key", Constants.api_key).asJson();
 
         return jsonResponse.getBody().toString();
     }
@@ -35,8 +36,7 @@ public class TeamService {
     }
 
     @GetMapping("/api/team/{teamId}")
-    public Team findTeamById(
-            @PathVariable("teamId") int teamId) {
+    public Team findTeamById(@PathVariable("teamId") int teamId) {
         return teamRepository.findById(teamId).orElse(null);
     }
 
@@ -46,29 +46,24 @@ public class TeamService {
     }
 
     @GetMapping("/api/team")
-    public List<Team> findMatchingTeams(
-            @RequestParam("filter") String filterString) {
+    public List<Team> findMatchingTeams(@RequestParam("filter") String filterString) {
         return teamRepository.findMatchingTeams(filterString);
     }
 
     @PostMapping("/api/team")
-    public List<Team> createTeam(
-            @RequestBody Team team) {
+    public List<Team> createTeam(@RequestBody Team team) {
         teamRepository.save(team);
         return (List<Team>) teamRepository.findAll();
     }
 
     @PostMapping("/api/team/bulk")
-    public List<Team> bulkCreateTeams(
-            @RequestBody TeamWrapper teams) {
+    public List<Team> bulkCreateTeams(@RequestBody TeamWrapper teams) {
         teamRepository.saveAll(teams.getTeamList());
         return (List<Team>) teamRepository.findAll();
     }
 
     @PutMapping("/api/team/{teamId}")
-    public Team updateTeam(
-            @PathVariable("teamId") int teamId,
-            @RequestBody Team updatedTeam) {
+    public Team updateTeam(@PathVariable("teamId") int teamId, @RequestBody Team updatedTeam) {
 
         if (teamRepository.findById(teamId).isPresent()) {
             Team team = teamRepository.findById(teamId).get();
@@ -81,8 +76,7 @@ public class TeamService {
     }
 
     @DeleteMapping("/api/team/{teamId}")
-    public void deleteTeam(
-            @PathVariable("teamId") int teamId) {
+    public void deleteTeam(@PathVariable("teamId") int teamId) {
         teamRepository.deleteById(teamId);
     }
 

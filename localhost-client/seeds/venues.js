@@ -48,14 +48,14 @@ class seedData {
         });
       });
     });
-    this.postData('https://localhost-server-fall-2018.herokuapp.com/api/venue/bulk', { venueList: insertVenues })
+    this.postData('http://localhost:8080/api/venue/bulk', { venueList: insertVenues })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
       })
       .catch((err) => console.log(err));
-    this.postData('https://localhost-server-fall-2018.herokuapp.com/api/team/bulk', { teamList: insertTeams })
+    this.postData('http://localhost:8080/api/team/bulk', { teamList: insertTeams })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
       })
       .catch((err) => {
         console.log(err);

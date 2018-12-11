@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import localhostServer.server.models.Player;
 import localhostServer.server.models.PlayerWrapper;
+import localhostServer.server.constants.Constants;
 
 import java.util.List;
 
@@ -22,13 +23,11 @@ public class PlayerService {
     @GetMapping("/api/player/{playerId}/details")
     public String getPlayerDetails(@PathVariable("playerId") String playerId) throws UnirestException {
 
-        HttpResponse<JsonNode> jsonResponse = Unirest
-                .get("http://api.sportradar.us/nfl/official/trial/v5/en/players/" + playerId + "/profile.json")
-                .header("accept", "application/json").queryString("api_key", "3gmsn3sbfgus6hw96bs6pyya").asJson();
+        HttpResponse<JsonNode> jsonResponse = Unirest.get(Constants.API_URL + "players/" + playerId + "/profile.json")
+                .header("accept", "application/json").queryString("api_key", Constants.api_key).asJson();
 
         return jsonResponse.getBody().toString();
     }
-
 
     @GetMapping("/api/player/")
     public List<Player> findAllPlayers() {
@@ -36,8 +35,7 @@ public class PlayerService {
     }
 
     @GetMapping("/api/player/{playerId}")
-    public Player findPlayerById(
-            @PathVariable("playerId") int playerId) {
+    public Player findPlayerById(@PathVariable("playerId") int playerId) {
         return playerRepository.findById(playerId).orElse(null);
     }
 
@@ -47,29 +45,24 @@ public class PlayerService {
     }
 
     @GetMapping("/api/player")
-    public List<Player> findMatchingPlayers(
-            @RequestParam("filter") String filterString) {
+    public List<Player> findMatchingPlayers(@RequestParam("filter") String filterString) {
         return playerRepository.findMatchingPlayers(filterString);
     }
 
     @PostMapping("/api/player")
-    public List<Player> createPlayer(
-            @RequestBody Player player) {
+    public List<Player> createPlayer(@RequestBody Player player) {
         playerRepository.save(player);
         return (List<Player>) playerRepository.findAll();
     }
 
     @PostMapping("/api/player/bulk")
-    public List<Player> bulkCreatePlayers(
-            @RequestBody PlayerWrapper players) {
+    public List<Player> bulkCreatePlayers(@RequestBody PlayerWrapper players) {
         playerRepository.saveAll(players.getPlayerList());
         return (List<Player>) playerRepository.findAll();
     }
 
     @PutMapping("/api/player/{playerId}")
-    public Player updatePlayer(
-            @PathVariable("playerId") int playerId,
-            @RequestBody Player updatedPlayer) {
+    public Player updatePlayer(@PathVariable("playerId") int playerId, @RequestBody Player updatedPlayer) {
 
         if (playerRepository.findById(playerId).isPresent()) {
             Player player = playerRepository.findById(playerId).get();
@@ -82,8 +75,7 @@ public class PlayerService {
     }
 
     @DeleteMapping("/api/player/{playerId}")
-    public void deletePlayer(
-            @PathVariable("playerId") int playerId) {
+    public void deletePlayer(@PathVariable("playerId") int playerId) {
         playerRepository.deleteById(playerId);
     }
 
@@ -91,6 +83,5 @@ public class PlayerService {
     public void deleteAllPlayers() {
         playerRepository.deleteAll();
     }
-
 
 }

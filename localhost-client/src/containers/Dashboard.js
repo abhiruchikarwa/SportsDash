@@ -11,16 +11,17 @@ import DetailsComponent from '../components/DetailsComponent';
 import Profile from "../components/Profile";
 import Register from "../components/Register";
 import Login from "../components/Login";
-import CommentBox from "../components/CommentBox";
 
 export default class Dashboard extends Component {
     constructor(props) {
         super(props);
+        let user = JSON.parse(sessionStorage.getItem('user'));
         this.state = {
             teams: [],
             displayTeams: [],
             searchTerm: '',
-            favorites: {}
+            favorites: {},
+            currentUser: user
         };
     }
 
@@ -46,8 +47,10 @@ export default class Dashboard extends Component {
                     }/>
                     <Route exact path="/(home|)" render={() =>
                         <div>
-                            {sessionStorage.getItem('currentUser') !== null &&
-                            <FavoriteComponent dashOrProf='Dash'/>}
+                            {
+                                this.state.currentUser &&
+                                <FavoriteComponent/>
+                            }
                             <div className="container-fluid dash-box">
                                 <div className="row">
                                     <div className="col-md-6 justify-content-center">
@@ -75,7 +78,6 @@ export default class Dashboard extends Component {
                         </div>
                     }/>
                     <Route exact path="/search" component={SearchResults}/>
-                    <Route exact path="/comment" component={CommentBox}/>
                     <Route exact path="/details" component={DetailsComponent}/>
                     <Route exact path="/login" component={Login}/>
                     <Route exact path="/register" component={Register}/>

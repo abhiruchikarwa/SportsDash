@@ -1,22 +1,24 @@
-import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import React, {Component} from 'react'
+import {withRouter} from 'react-router-dom'
 
-import CommentBox from "./CommentBox";
-import PersonalInfo from './PersonalInfo'
+import UserDetails from './UserDetails'
+import CommentBoxForPlayer from "./CommentBoxForPlayer";
 import FavoriteComponent from "./FavoriteComponent";
 
 import UserService from '../services/UserService';
 import '../styles/profile.style.client.css'
+import CommentBoxForUser from "./CommentBoxForUser";
 
 class Profile extends Component {
     constructor(props) {
-        super(props)
-        const currentUser = sessionStorage.getItem('user')
-        this.followed = false
+        super(props);
+        const currentUser = JSON.parse(sessionStorage.getItem('user'));
         this.state = {
             userId: '',
             user: {},
-        }
+            currentUser,
+        };
+        this.updateUser = this.updateUser.bind(this);
     }
 
     componentDidMount() {
@@ -34,13 +36,20 @@ class Profile extends Component {
 
     componentWillUpdate(newProps) {
         if (this.props !== newProps) {
-            this.followed = true
             this.setState({
                 userId: newProps.match.params.userId,
                 isEdit: newProps.match.params.edit,
-                isSelf: newProps.match.params.userId === sessionStorage.getItem('currentUser')
+                isSelf: newProps.match.params.userId === JSON.parse(sessionStorage.getItem('user')).id,
             })
         }
+    }
+
+    updateUser(userToUpdate) {
+        UserService.updateUser(userToUpdate)
+            .then((user) => {
+                sessionStorage.setItem('user', JSON.stringify(user));
+                this.setState({user});
+            });
     }
 
     render() {
@@ -49,18 +58,15 @@ class Profile extends Component {
                 <div className='profile-body'>
                     <div className="row">
                         <div className="profile-left col-3">
-                            <PersonalInfo
+                            <UserDetails
                                 userId={this.state.userId}
-                                isEdit={this.state.isEdit}
-                                isSelf={this.state.isSelf} />
-                            {!this.state.isSelf && !this.followed &&
-                                <button className='pI-button'>Follow</button>}
-                            {!this.state.isSelf && this.followed &&
-                                <button className='pI-button'>Unfollow</button>}
+                                user={this.state.user}
+                                isSelf={this.state.currentUser === this.state.user}
+                                updateUser={this.updateUser}/>
                         </div>
                         <div className="profile-right col-9">
-                            <CommentBox />
-                            <FavoriteComponent dashOrProf='Prof' />
+                            <CommentBoxForUser userId={this.props.match.params.userId}/>
+                            <FavoriteComponent/>
                         </div>
 
                     </div>
@@ -69,4 +75,5 @@ class Profile extends Component {
         )
     }
 }
+
 export default withRouter(Profile)

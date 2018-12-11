@@ -13,26 +13,36 @@ class TeamDetails extends Component {
         this.state = {
             teamId: this.props.id,
             teamDetails: {},
-            team: {},
+            currentTeam: {},
             currentUser: user,
             userFavorites: []
         };
     }
 
     componentDidMount() {
-        let currentTeam;
+        let team;
+        let userFavorite;
+
         TeamService.getTeamByApiId(this.state.teamId)
-            .then(team => currentTeam = team)
-            .then(TeamService.getTeamDetails(this.state.teamId)
-                .then(teamDetails => this.setState({
-                    team: currentTeam,
-                    teamDetails: teamDetails,
-                })))
+            .then(currentTeam => team = currentTeam)
+            .then(() =>
+                UserService.getFavoriteTeams(this.state.currentUser.id)
+                    .then(favorite => {
+                        userFavorite = _.map(favorite, 'api_id');
+                    })
+                    .catch(userFavorite = []))
+            .then(() =>
+                TeamService.getTeamDetails(this.state.teamId)
+                    .then(details => this.setState({
+                        currentTeam: team,
+                        userFavorites: userFavorite,
+                        teamDetails: details,
+                    })));
     }
 
 
     addToFavorites = () => {
-        UserService.addFavoriteTeam(this.state.currentUser.id, this.state.team.id)
+        UserService.addFavoriteTeam(this.state.currentUser.id, this.state.currentTeam.id)
             .then((favTeams) => {
                 let favoriteTeams = _.map(favTeams, 'api_id');
                 this.setState({
@@ -42,7 +52,7 @@ class TeamDetails extends Component {
     };
 
     removeFromFavorites = () => {
-        UserService.removeFavoriteTeam(this.state.currentUser.id, this.state.team.id)
+        UserService.removeFavoriteTeam(this.state.currentUser.id, this.state.currentTeam.id)
             .then(favTeams => {
                 let favoriteTeams = _.map(favTeams, 'api_id');
                 this.setState({

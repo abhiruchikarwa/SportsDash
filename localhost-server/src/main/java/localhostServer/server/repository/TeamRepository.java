@@ -9,11 +9,9 @@ import java.util.List;
 
 public interface TeamRepository extends CrudRepository<Team, Integer> {
 
-    @Query(value = "SELECT * FROM Team team WHERE team.name LIKE CONCAT('%',:filterString,'%')", nativeQuery = true)
-    List<Team> findMatchingTeams
-            (@Param("filterString") String filterString);
+  @Query(value = "SELECT * FROM Team team WHERE team.name LIKE CONCAT('%',:filterString,'%')", nativeQuery = true)
+  List<Team> findMatchingTeams(@Param("filterString") String filterString);
 
-    @Query("SELECT team FROM Team team WHERE team.api_id=:api_id")
-    Team findTeamByApiId
-            (@Param("api_id") String api_id);
+  @Query("SELECT team FROM Team team WHERE team.api_id=:api_id")
+  Team findTeamByApiId(@Param("api_id") String api_id);
 }

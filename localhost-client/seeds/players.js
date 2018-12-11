@@ -27,9 +27,9 @@ class seedPlayerData {
           name: player.name,
         });
       });
-      this.postData('https://localhost-server-fall-2018.herokuapp.com/api/player/bulk', { playerList: insertPlayers })
+      this.postData('http://localhost:8080/api/player/bulk', { playerList: insertPlayers })
         .then((res) => {
-          console.log(res);
+          // console.log(res);
         })
         .catch((err) => console.log(err));
     })

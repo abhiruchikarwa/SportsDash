@@ -32,10 +32,10 @@ class GameDetails extends Component {
                 </div>
                 <div className="row justify-content-center align-items-center">
                     <div className="col-md-4 row game-venue" onClick={() => this.props.history.push('/details?filter=teams&id=' + game.home.id)}>
-                        <div className="col-md-4"><img alt="home"
+                        <div className="col-md-4 col-xs-2"><img alt="home"
                             src={TeamService.getTeamLogo(game.home.market + ' ' + game.home.name)}
                             width={"50px"} /></div>
-                        <div className="col-md-8 match-text"><span>{game.home.market + ' ' + game.home.name}</span></div>
+                        <div className="col-md-8 col-xs-10 match-text"><span>{game.home.market + ' ' + game.home.name}</span></div>
                     </div>
                     <div className="col-md-1 match-text"><span>{game.home.points ? game.home.points : "--"}</span>
                     </div>
@@ -75,12 +75,12 @@ class GameDetails extends Component {
                 <div className="justify-content-center align-items-center scrollable-score">
                     <div>Passing</div>
                     <div className="row">
-                        <div className="col-1 match-details">No.</div>
-                        <div className="col-3 match-details">Player</div>
-                        <div className="col-2 match-details">Comp/Att</div>
-                        <div className="col-2 match-details">Yards</div>
-                        <div className="col-2 match-details">Touchdowns</div>
-                        <div className="col-2 match-details">Interceptions</div>
+                        <div className="col-md-1 col-sm-3 match-details">No.</div>
+                        <div className="col-md-3 col-sm-6 match-details">Player</div>
+                        <div className="col-md-2 col-sm-3 match-details">Comp/Att</div>
+                        <div className="col-md-2 hidden-sm-down hidden-xs-down match-details">Yards</div>
+                        <div className="col-md-2 hidden-sm-down hidden-xs-down match-details">Touchdowns</div>
+                        <div className="col-md-2 hidden-sm-down hidden-xs-down match-details">Interceptions</div>
                     </div>
                     {team.passing.players && team.passing.players.length > 0 ? team.passing.players.map((item, key) => {
                         return (<this.ScoreRow

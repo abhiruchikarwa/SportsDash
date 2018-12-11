@@ -9,9 +9,9 @@ import java.util.List;
 
 public interface VenueRepository extends CrudRepository<Venue, Integer> {
 
-    @Query(value = "SELECT * FROM Venue venue WHERE venue.name LIKE CONCAT('%',:filterString,'%')", nativeQuery = true)
-    List<Venue> findMatchingVenues(@Param("filterString") String filterString);
+  @Query(value = "SELECT * FROM Venue venue WHERE venue.name LIKE CONCAT('%',:filterString,'%')", nativeQuery = true)
+  List<Venue> findMatchingVenues(@Param("filterString") String filterString);
 
-    @Query("SELECT venue FROM Venue venue WHERE venue.api_id=:venueApiId")
-    List<Venue> findVenueByApiId(@Param("venueApiId") String venueApiId);
+  @Query("SELECT venue FROM Venue venue WHERE venue.api_id=:venueApiId")
+  List<Venue> findVenueByApiId(@Param("venueApiId") String venueApiId);
 }
