@@ -1,0 +1,1054 @@
+{
+  "_comment": "Generation started @ 2018-12-09 23:22:04 +0000 ended @ 2018-12-09 23:22:04 +0000",
+  "league": {
+    "name": "National Football League",
+    "alias": "NFL",
+    "id": "3c6d318a-6164-4290-9bbc-bf9bb21cc4b8"
+  },
+  "conferences": [
+    {
+      "name": "AFC",
+      "alias": "AFC",
+      "id": "1bdefe12-6cb2-4d6a-b208-b04602ae79c3",
+      "divisions": [
+        {
+          "teams": [
+            {
+              "market": "Buffalo",
+              "venue": {
+                "zip": "14127",
+                "country": "USA",
+                "sr_id": "sr:venue:20375",
+                "address": "One Bills Drive",
+                "surface": "artificial",
+                "city": "Orchard Park",
+                "name": "New Era Field",
+                "roof_type": "outdoor",
+                "id": "e9e0828e-37fc-4238-a317-49037577dd55",
+                "state": "NY",
+                "capacity": 71608
+              },
+              "sr_id": "sr:competitor:4376",
+              "franchise": {
+                "name": "Bills",
+                "alias": "BUF",
+                "id": "26f22bc6-1fb9-4c01-80cc-908342490651"
+              },
+              "references": [
+                {
+                  "origin": "gsis",
+                  "id": "BUF"
+                }
+              ],
+              "name": "Bills",
+              "alias": "BUF",
+              "id": "768c92aa-75ff-4a43-bcc0-f2798c2e1724"
+            },
+            {
+              "market": "Miami",
+              "venue": {
+                "zip": "33056",
+                "country": "USA",
+                "sr_id": "sr:venue:20269",
+                "address": "2269 Northwest 199th Street",
+                "surface": "turf",
+                "city": "Miami Gardens",
+                "name": "Hard Rock Stadium",
+                "roof_type": "outdoor",
+                "id": "50a5c833-1570-4c38-abc7-7914cf87dbde",
+                "state": "FL",
+                "capacity": 65326
+              },
+              "sr_id": "sr:competitor:4287",
+              "franchise": {
+                "name": "Dolphins",
+                "alias": "MIA",
+                "id": "d20c28e5-568a-4a6e-8b17-a8b2108e0eb9"
+              },
+              "references": [
+                {
+                  "origin": "gsis",
+                  "id": "MIA"
+                }
+              ],
+              "name": "Dolphins",
+              "alias": "MIA",
+              "id": "4809ecb0-abd3-451d-9c4a-92a90b83ca06"
+            },
+            {
+              "market": "New York",
+              "venue": {
+                "zip": "07073",
+                "country": "USA",
+                "sr_id": "sr:venue:1981",
+                "address": "One MetLife Stadium Drive",
+                "surface": "artificial",
+                "city": "East Rutherford",
+                "name": "MetLife Stadium",
+                "roof_type": "outdoor",
+                "id": "5d4c85c7-d84e-4e10-bd6a-8a15ebecca5c",
+                "state": "NJ",
+                "capacity": 82500
+              },
+              "sr_id": "sr:competitor:4427",
+              "franchise": {
+                "name": "Jets",
+                "alias": "NYJ",
+                "id": "7952ab69-46f3-4477-8ea8-903620bc0f34"
+              },
+              "references": [
+                {
+                  "origin": "gsis",
+                  "id": "NYJ"
+                }
+              ],
+              "name": "Jets",
+              "alias": "NYJ",
+              "id": "5fee86ae-74ab-4bdd-8416-42a9dd9964f3"
+            },
+            {
+              "market": "New England",
+              "venue": {
+                "zip": "02035",
+                "country": "USA",
+                "sr_id": "sr:venue:2379",
+                "address": "One Patriot Place",
+                "surface": "artificial",
+                "city": "Foxborough",
+                "name": "Gillette Stadium",
+                "roof_type": "outdoor",
+                "id": "e43310b1-cb82-4df9-8be5-e9b39637031b",
+                "state": "MA",
+                "capacity": 68756
+              },
+              "sr_id": "sr:competitor:4424",
+              "franchise": {
+                "name": "Patriots",
+                "alias": "NE",
+                "id": "c95b688d-810a-4323-9dad-fa3696ed8a37"
+              },
+              "references": [
+                {
+                  "origin": "gsis",
+                  "id": "NE"
+                }
+              ],
+              "name": "Patriots",
+              "alias": "NE",
+              "id": "97354895-8c77-4fd4-a860-32e62ea7382a"
+            }
+          ],
+          "name": "AFC East",
+          "alias": "AFC_EAST",
+          "id": "b95cd27d-d631-4fe1-bc05-0ae47fc0b14b"
+        },
+        {
+          "teams": [
+            {
+              "market": "Cincinnati",
+              "venue": {
+                "zip": "45202",
+                "country": "USA",
+                "address": "One Paul Brown Stadium",
+                "surface": "artificial",
+                "city": "Cincinnati",
+                "name": "Paul Brown Stadium",
+                "roof_type": "outdoor",
+                "id": "b87a1595-d3c8-48ea-8a53-0aab6378a64a",
+                "state": "OH",
+                "capacity": 65535
+              },
+              "sr_id": "sr:competitor:4416",
+              "franchise": {
+                "name": "Bengals",
+                "alias": "CIN",
+                "id": "fee0985c-3330-40ce-9b7d-a396ccb8d032"
+              },
+              "references": [
+                {
+                  "origin": "gsis",
+                  "id": "CIN"
+                }
+              ],
+              "name": "Bengals",
+              "alias": "CIN",
+              "id": "ad4ae08f-d808-42d5-a1e6-e9bc4e34d123"
+            },
+            {
+              "market": "Cleveland",
+              "venue": {
+                "zip": "44114",
+                "country": "USA",
+                "sr_id": "sr:venue:8177",
+                "address": "100 Alfred Lerner Way",
+                "surface": "turf",
+                "city": "Cleveland",
+                "name": "FirstEnergy Stadium",
+                "roof_type": "outdoor",
+                "id": "90c38d91-3774-4f5d-82ca-1c806828219f",
+                "state": "OH",
+                "capacity": 67895
+              },
+              "sr_id": "sr:competitor:4417",
+              "franchise": {
+                "name": "Browns",
+                "alias": "CLE",
+                "id": "419d8ce3-3352-429e-a8ba-0e89891fca3e"
+              },
+              "references": [
+                {
+                  "origin": "gsis",
+                  "id": "CLV"
+                }
+              ],
+              "name": "Browns",
+              "alias": "CLE",
+              "id": "d5a2eb42-8065-4174-ab79-0a6fa820e35e"
+            },
+            {
+              "market": "Baltimore",
+              "venue": {
+                "zip": "21230",
+                "country": "USA",
+                "sr_id": "sr:venue:8169",
+                "address": "1101 Russell Street",
+                "surface": "turf",
+                "city": "Baltimore",
+                "name": "M&T Bank Stadium",
+                "roof_type": "outdoor",
+                "id": "d54faae0-0314-484f-8604-9d8dd08e1149",
+                "state": "MD",
+                "capacity": 71008
+              },
+              "sr_id": "sr:competitor:4413",
+              "franchise": {
+                "name": "Ravens",
+                "alias": "BAL",
+                "id": "677f94d8-2228-47be-881f-6680fd0af994"
+              },
+              "references": [
+                {
+                  "origin": "gsis",
+                  "id": "BLT"
+                }
+              ],
+              "name": "Ravens",
+              "alias": "BAL",
+              "id": "ebd87119-b331-4469-9ea6-d51fe3ce2f1c"
+            },
+            {
+              "market": "Pittsburgh",
+              "venue": {
+                "zip": "15212",
+                "country": "USA",
+                "address": "100 Art Rooney Avenue",
+                "surface": "turf",
+                "city": "Pittsburgh",
+                "name": "Heinz Field",
+                "roof_type": "outdoor",
+                "id": "7349a2e6-0ac9-410b-8bd2-ca58c9f7aa34",
+                "state": "PA",
+                "capacity": 68400
+              },
+              "sr_id": "sr:competitor:4345",
+              "franchise": {
+                "name": "Steelers",
+                "alias": "PIT",
+                "id": "8dfe8626-6970-4e88-90dd-ea735c3d5cc3"
+              },
+              "references": [
+                {
+                  "origin": "gsis",
+                  "id": "PIT"
+                }
+              ],
+              "name": "Steelers",
+              "alias": "PIT",
+              "id": "cb2f9f1f-ac67-424e-9e72-1475cb0ed398"
+            }
+          ],
+          "name": "AFC North",
+          "alias": "AFC_NORTH",
+          "id": "eb60da78-4eb5-4184-971e-2c5cd4ab4988"
+        },
+        {
+          "teams": [
+            {
+              "market": "Indianapolis",
+              "venue": {
+                "zip": "46225",
+                "country": "USA",
+                "address": "500 South Capitol Avenue",
+                "surface": "artificial",
+                "city": "Indianapolis",
+                "name": "Lucas Oil Stadium",
+                "roof_type": "retractable_dome",
+                "id": "6ed18563-53e0-46c2-a91d-12d73a16456d",
+                "state": "IN",
+                "capacity": 67000
+              },
+              "sr_id": "sr:competitor:4421",
+              "franchise": {
+                "name": "Colts",
+                "alias": "IND",
+                "id": "2fef583c-e5eb-49b6-ad33-fb4e1734326f"
+              },
+              "references": [
+                {
+                  "origin": "gsis",
+                  "id": "IND"
+                }
+              ],
+              "name": "Colts",
+              "alias": "IND",
+              "id": "82cf9565-6eb9-4f01-bdbd-5aa0d472fcd9"
+            },
+            {
+              "market": "Jacksonville",
+              "venue": {
+                "zip": "32202",
+                "country": "USA",
+                "address": "One EverBank Field Drive",
+                "surface": "turf",
+                "city": "Jacksonville",
+                "name": "TIAA Bank Field",
+                "roof_type": "outdoor",
+                "id": "4c5c036d-dd3d-4183-b595-71a43a97560f",
+                "state": "FL",
+                "capacity": 67246
+              },
+              "sr_id": "sr:competitor:4386",
+              "franchise": {
+                "name": "Jaguars",
+                "alias": "JAC",
+                "id": "06cfabbf-ebd8-48b3-a9a8-9bfbc1d45272"
+              },
+              "references": [
+                {
+                  "origin": "gsis",
+                  "id": "JAX"
+                }
+              ],
+              "name": "Jaguars",
+              "alias": "JAC",
+              "id": "f7ddd7fa-0bae-4f90-bc8e-669e4d6cf2de"
+            },
+            {
+              "market": "Houston",
+              "venue": {
+                "zip": "77054",
+                "country": "USA",
+                "address": "One Reliant Park",
+                "surface": "artificial",
+                "city": "Houston",
+                "name": "NRG Stadium",
+                "roof_type": "retractable_dome",
+                "id": "6a72e5ca-33d0-40af-8e6b-b32a4d3d9346",
+                "state": "TX",
+                "capacity": 71054
+              },
+              "sr_id": "sr:competitor:4324",
+              "franchise": {
+                "name": "Texans",
+                "alias": "HOU",
+                "id": "0b23e38e-a1f2-44e5-97c5-70b6a0fa2ff0"
+              },
+              "references": [
+                {
+                  "origin": "gsis",
+                  "id": "HST"
+                }
+              ],
+              "name": "Texans",
+              "alias": "HOU",
+              "id": "82d2d380-3834-4938-835f-aec541e5ece7"
+            },
+            {
+              "market": "Tennessee",
+              "venue": {
+                "zip": "37213",
+                "country": "USA",
+                "address": "One Titans Way",
+                "surface": "turf",
+                "city": "Nashville",
+                "name": "Nissan Stadium",
+                "roof_type": "outdoor",
+                "id": "5295c1b7-c85c-49cb-9569-1707c65324e5",
+                "state": "TN",
+                "capacity": 69143
+              },
+              "sr_id": "sr:competitor:367364",
+              "franchise": {
+                "name": "Titans",
+                "alias": "TEN",
+                "id": "0599bd1c-ffb7-46fe-884a-604933de6834"
+              },
+              "references": [
+                {
+                  "origin": "gsis",
+                  "id": "TEN"
+                }
+              ],
+              "name": "Titans",
+              "alias": "TEN",
+              "id": "d26a1ca5-722d-4274-8f97-c92e49c96315"
+            }
+          ],
+          "name": "AFC South",
+          "alias": "AFC_SOUTH",
+          "id": "e447e7c0-5997-4bb7-bea3-aaae48aedcb8"
+        },
+        {
+          "teams": [
+            {
+              "market": "Denver",
+              "venue": {
+                "zip": "80204",
+                "country": "USA",
+                "sr_id": "sr:venue:30961",
+                "address": "1701 Mile High Stadium Circle",
+                "surface": "turf",
+                "city": "Denver",
+                "name": "Broncos Stadium at Mile High",
+                "roof_type": "outdoor",
+                "id": "6589e61d-ef1e-4e30-91b5-9acd2072b8a0",
+                "state": "CO",
+                "capacity": 76125
+              },
+              "sr_id": "sr:competitor:4418",
+              "franchise": {
+                "name": "Broncos",
+                "alias": "DEN",
+                "id": "32e2db10-be6d-41ed-9e3d-5b30ba164b99"
+              },
+              "references": [
+                {
+                  "origin": "gsis",
+                  "id": "DEN"
+                }
+              ],
+              "name": "Broncos",
+              "alias": "DEN",
+              "id": "ce92bd47-93d5-4fe9-ada4-0fc681e6caa0"
+            },
+            {
+              "market": "Los Angeles",
+              "venue": {
+                "zip": "90746",
+                "country": "USA",
+                "sr_id": "sr:venue:2292",
+                "address": "18400 Avalon Boulevard",
+                "surface": "turf",
+                "city": "Carson",
+                "name": "StubHub Center",
+                "roof_type": "outdoor",
+                "id": "feebab00-4a3e-4123-8d7c-ed0dbdd96540",
+                "state": "CA",
+                "capacity": 27000
+              },
+              "sr_id": "sr:competitor:4429",
+              "franchise": {
+                "name": "Chargers",
+                "alias": "LAC",
+                "id": "a74d513a-dd7f-440d-a366-249f8f8dd97d"
+              },
+              "references": [
+                {
+                  "origin": "gsis",
+                  "id": "LAC"
+                }
+              ],
+              "name": "Chargers",
+              "alias": "LAC",
+              "id": "1f6dcffb-9823-43cd-9ff4-e7a8466749b5"
+            },
+            {
+              "market": "Kansas City",
+              "venue": {
+                "zip": "64129",
+                "country": "USA",
+                "sr_id": "sr:venue:8189",
+                "address": "One Arrowhead Drive",
+                "surface": "turf",
+                "city": "Kansas City",
+                "name": "Arrowhead Stadium",
+                "roof_type": "outdoor",
+                "id": "2ec4c411-dac2-403d-b091-6b6aa4a0a914",
+                "state": "MO",
+                "capacity": 79451
+              },
+              "sr_id": "sr:competitor:4422",
+              "franchise": {
+                "name": "Chiefs",
+                "alias": "KC",
+                "id": "5d239f9e-ef6a-46a6-83c2-94500fd119be"
+              },
+              "references": [
+                {
+                  "origin": "gsis",
+                  "id": "KC"
+                }
+              ],
+              "name": "Chiefs",
+              "alias": "KC",
+              "id": "6680d28d-d4d2-49f6-aace-5292d3ec02c2"
+            },
+            {
+              "market": "Oakland",
+              "venue": {
+                "zip": "94621",
+                "country": "USA",
+                "sr_id": "sr:venue:8095",
+                "address": "7000 Coliseum Way",
+                "surface": "turf",
+                "city": "Oakland",
+                "name": "Oakland Alameda Coliseum",
+                "roof_type": "outdoor",
+                "id": "ba1ad00f-9130-462c-93f9-5612a0015117",
+                "state": "CA",
+                "capacity": 53286
+              },
+              "sr_id": "sr:competitor:4390",
+              "franchise": {
+                "name": "Raiders",
+                "alias": "OAK",
+                "id": "859f427c-5157-4b5a-90e4-066e83f46cc3"
+              },
+              "references": [
+                {
+                  "origin": "gsis",
+                  "id": "OAK"
+                }
+              ],
+              "name": "Raiders",
+              "alias": "OAK",
+              "id": "1c1cec48-6352-4556-b789-35304c1a6ae1"
+            }
+          ],
+          "name": "AFC West",
+          "alias": "AFC_WEST",
+          "id": "324decdd-aa1b-4074-8958-c009d8fac31a"
+        }
+      ]
+    },
+    {
+      "name": "NFC",
+      "alias": "NFC",
+      "id": "b1808e5f-d40b-47c0-8af8-5175c0fdcd26",
+      "divisions": [
+        {
+          "teams": [
+            {
+              "market": "Dallas",
+              "venue": {
+                "zip": "76011",
+                "country": "USA",
+                "address": "One Legends Way",
+                "surface": "artificial",
+                "city": "Arlington",
+                "name": "AT&T Stadium",
+                "roof_type": "retractable_dome",
+                "id": "1e84213a-ff1f-4c9d-a003-8ee782b25a40",
+                "state": "TX",
+                "capacity": 80000
+              },
+              "sr_id": "sr:competitor:4392",
+              "franchise": {
+                "name": "Cowboys",
+                "alias": "DAL",
+                "id": "1e0f7b34-9603-412e-bcb6-358dbe5e9d6a"
+              },
+              "references": [
+                {
+                  "origin": "gsis",
+                  "id": "DAL"
+                }
+              ],
+              "name": "Cowboys",
+              "alias": "DAL",
+              "id": "e627eec7-bbae-4fa4-8e73-8e1d6bc5c060"
+            },
+            {
+              "market": "Philadelphia",
+              "venue": {
+                "zip": "19148",
+                "country": "USA",
+                "address": "1020 Pattison Avenue",
+                "surface": "turf",
+                "city": "Philadelphia",
+                "name": "Lincoln Financial Field",
+                "roof_type": "outdoor",
+                "id": "4fa8c29c-6626-464c-8540-314ed7535e1b",
+                "state": "PA",
+                "capacity": 68532
+              },
+              "sr_id": "sr:competitor:4428",
+              "franchise": {
+                "name": "Eagles",
+                "alias": "PHI",
+                "id": "8eefc537-0493-4de8-8d64-2c091d3f5887"
+              },
+              "references": [
+                {
+                  "origin": "gsis",
+                  "id": "PHI"
+                }
+              ],
+              "name": "Eagles",
+              "alias": "PHI",
+              "id": "386bdbf9-9eea-4869-bb9a-274b0bc66e80"
+            },
+            {
+              "market": "New York",
+              "venue": {
+                "zip": "07073",
+                "country": "USA",
+                "sr_id": "sr:venue:1981",
+                "address": "One MetLife Stadium Drive",
+                "surface": "artificial",
+                "city": "East Rutherford",
+                "name": "MetLife Stadium",
+                "roof_type": "outdoor",
+                "id": "5d4c85c7-d84e-4e10-bd6a-8a15ebecca5c",
+                "state": "NJ",
+                "capacity": 82500
+              },
+              "sr_id": "sr:competitor:4426",
+              "franchise": {
+                "name": "Giants",
+                "alias": "NYG",
+                "id": "ba82e47e-a7b4-47a6-8017-1f41b1f02271"
+              },
+              "references": [
+                {
+                  "origin": "gsis",
+                  "id": "NYG"
+                }
+              ],
+              "name": "Giants",
+              "alias": "NYG",
+              "id": "04aa1c9d-66da-489d-b16a-1dee3f2eec4d"
+            },
+            {
+              "market": "Washington",
+              "venue": {
+                "zip": "20785",
+                "country": "USA",
+                "address": "1600 FedEx Way",
+                "surface": "turf",
+                "city": "Landover",
+                "name": "FedExField",
+                "roof_type": "outdoor",
+                "id": "7c11bb2d-4a53-4842-b842-0f1c63ed78e9",
+                "state": "MD",
+                "capacity": 82000
+              },
+              "sr_id": "sr:competitor:4432",
+              "franchise": {
+                "name": "Redskins",
+                "alias": "WAS",
+                "id": "d7376957-e63b-4bc9-b82b-d087fc0ec83a"
+              },
+              "references": [
+                {
+                  "origin": "gsis",
+                  "id": "WAS"
+                }
+              ],
+              "name": "Redskins",
+              "alias": "WAS",
+              "id": "22052ff7-c065-42ee-bc8f-c4691c50e624"
+            }
+          ],
+          "name": "NFC East",
+          "alias": "NFC_EAST",
+          "id": "6dab3ca1-b9cb-403f-91dd-b2a3708ab060"
+        },
+        {
+          "teams": [
+            {
+              "market": "Chicago",
+              "venue": {
+                "zip": "60605",
+                "country": "USA",
+                "address": "1410 South Museum Campus Drive",
+                "surface": "turf",
+                "city": "Chicago",
+                "name": "Soldier Field",
+                "roof_type": "outdoor",
+                "id": "d7866605-5ac6-4b3a-90e8-760cc5a26b75",
+                "state": "IL",
+                "capacity": 61500
+              },
+              "sr_id": "sr:competitor:4391",
+              "franchise": {
+                "name": "Bears",
+                "alias": "CHI",
+                "id": "70444634-4a2d-4d63-8bb8-4100da905e0b"
+              },
+              "references": [
+                {
+                  "origin": "gsis",
+                  "id": "CHI"
+                }
+              ],
+              "name": "Bears",
+              "alias": "CHI",
+              "id": "7b112545-38e6-483c-a55c-96cf6ee49cb8"
+            },
+            {
+              "market": "Detroit",
+              "venue": {
+                "zip": "48226",
+                "country": "USA",
+                "address": "2000 Brush Street",
+                "surface": "artificial",
+                "city": "Detroit",
+                "name": "Ford Field",
+                "roof_type": "dome",
+                "id": "6e3bcf22-277d-4c06-b019-62aded51654f",
+                "state": "MI",
+                "capacity": 65000
+              },
+              "sr_id": "sr:competitor:4419",
+              "franchise": {
+                "name": "Lions",
+                "alias": "DET",
+                "id": "6e9e3a7d-d35d-47a2-bc8d-4855fe35ab7a"
+              },
+              "references": [
+                {
+                  "origin": "gsis",
+                  "id": "DET"
+                }
+              ],
+              "name": "Lions",
+              "alias": "DET",
+              "id": "c5a59daa-53a7-4de0-851f-fb12be893e9e"
+            },
+            {
+              "market": "Green Bay",
+              "venue": {
+                "zip": "54304",
+                "country": "USA",
+                "sr_id": "sr:venue:8183",
+                "address": "1265 Lombardi Avenue",
+                "surface": "turf",
+                "city": "Green Bay",
+                "name": "Lambeau Field",
+                "roof_type": "outdoor",
+                "id": "5a60dd3a-302c-41c6-ab0f-dd335c1103c2",
+                "state": "WI",
+                "capacity": 80750
+              },
+              "sr_id": "sr:competitor:4420",
+              "franchise": {
+                "name": "Packers",
+                "alias": "GB",
+                "id": "d06bf286-748f-4482-b256-8be705d41d16"
+              },
+              "references": [
+                {
+                  "origin": "gsis",
+                  "id": "GB"
+                }
+              ],
+              "name": "Packers",
+              "alias": "GB",
+              "id": "a20471b4-a8d9-40c7-95ad-90cc30e46932"
+            },
+            {
+              "market": "Minnesota",
+              "venue": {
+                "zip": "55415",
+                "country": "USA",
+                "sr_id": "sr:venue:18423",
+                "address": "900 S 5th Street",
+                "surface": "artificial",
+                "city": "Minneapolis",
+                "name": "U.S. Bank Stadium",
+                "roof_type": "dome",
+                "id": "f5ff00d4-1ed8-4918-bf73-13d66d510f98",
+                "state": "MN",
+                "capacity": 66655
+              },
+              "sr_id": "sr:competitor:4423",
+              "franchise": {
+                "name": "Vikings",
+                "alias": "MIN",
+                "id": "eea5f772-bd6b-4dc6-a7ef-118708f3a726"
+              },
+              "references": [
+                {
+                  "origin": "gsis",
+                  "id": "MIN"
+                }
+              ],
+              "name": "Vikings",
+              "alias": "MIN",
+              "id": "33405046-04ee-4058-a950-d606f8c30852"
+            }
+          ],
+          "name": "NFC North",
+          "alias": "NFC_NORTH",
+          "id": "6dc1933f-ca90-46e6-aaf7-9b95cc44306a"
+        },
+        {
+          "teams": [
+            {
+              "market": "Tampa Bay",
+              "venue": {
+                "zip": "33607",
+                "country": "USA",
+                "address": "4201 North Dale Mabry Highway",
+                "surface": "turf",
+                "city": "Tampa",
+                "name": "Raymond James Stadium",
+                "roof_type": "outdoor",
+                "id": "6fccc39c-80bc-4c81-83d9-2d5a848c8c09",
+                "state": "FL",
+                "capacity": 65890
+              },
+              "sr_id": "sr:competitor:4388",
+              "franchise": {
+                "name": "Buccaneers",
+                "alias": "TB",
+                "id": "e3790b3a-f7fc-4c19-8016-3e29b623f6d0"
+              },
+              "references": [
+                {
+                  "origin": "gsis",
+                  "id": "TB"
+                }
+              ],
+              "name": "Buccaneers",
+              "alias": "TB",
+              "id": "4254d319-1bc7-4f81-b4ab-b5e6f3402b69"
+            },
+            {
+              "market": "Atlanta",
+              "venue": {
+                "zip": "30313",
+                "country": "USA",
+                "address": "441 Martin Luther King Jr Drive NW",
+                "surface": "artificial",
+                "city": "Atlanta",
+                "name": "Mercedes-Benz Stadium",
+                "roof_type": "retractable_dome",
+                "id": "1f2d393b-2291-4835-a412-0714966ea245",
+                "state": "GA",
+                "capacity": 71000
+              },
+              "sr_id": "sr:competitor:4393",
+              "franchise": {
+                "name": "Falcons",
+                "alias": "ATL",
+                "id": "927a1bb6-f1a5-42f0-b059-c448fdb5f8bb"
+              },
+              "references": [
+                {
+                  "origin": "gsis",
+                  "id": "ATL"
+                }
+              ],
+              "name": "Falcons",
+              "alias": "ATL",
+              "id": "e6aa13a4-0055-48a9-bc41-be28dc106929"
+            },
+            {
+              "market": "Carolina",
+              "venue": {
+                "zip": "28202",
+                "country": "USA",
+                "address": "800 South Mint Street",
+                "surface": "turf",
+                "city": "Charlotte",
+                "name": "Bank of America Stadium",
+                "roof_type": "outdoor",
+                "id": "39be9ed4-3292-49ac-8699-a381de3a4969",
+                "state": "NC",
+                "capacity": 75419
+              },
+              "sr_id": "sr:competitor:4415",
+              "franchise": {
+                "name": "Panthers",
+                "alias": "CAR",
+                "id": "ab08c41f-7e6d-4399-9750-7ef1c6d6d4e0"
+              },
+              "references": [
+                {
+                  "origin": "gsis",
+                  "id": "CAR"
+                }
+              ],
+              "name": "Panthers",
+              "alias": "CAR",
+              "id": "f14bf5cc-9a82-4a38-bc15-d39f75ed5314"
+            },
+            {
+              "market": "New Orleans",
+              "venue": {
+                "zip": "70112",
+                "country": "USA",
+                "address": "1500 Sugar Bowl Drive",
+                "surface": "artificial",
+                "city": "New Orleans",
+                "name": "Mercedes-Benz Superdome",
+                "roof_type": "dome",
+                "id": "3c85d89a-ec66-4983-acd5-1381d6c8673a",
+                "state": "LA",
+                "capacity": 76468
+              },
+              "sr_id": "sr:competitor:4425",
+              "franchise": {
+                "name": "Saints",
+                "alias": "NO",
+                "id": "bdf043f4-8199-4f76-92ea-5604cc53ad12"
+              },
+              "references": [
+                {
+                  "origin": "gsis",
+                  "id": "NO"
+                }
+              ],
+              "name": "Saints",
+              "alias": "NO",
+              "id": "0d855753-ea21-4953-89f9-0e20aff9eb73"
+            }
+          ],
+          "name": "NFC South",
+          "alias": "NFC_SOUTH",
+          "id": "2a46bf95-b036-4c6c-b69f-a80c4b6c46bf"
+        },
+        {
+          "teams": [
+            {
+              "market": "San Francisco",
+              "venue": {
+                "zip": "95054",
+                "country": "USA",
+                "address": "4900 Marie P DeBartolo Way",
+                "surface": "turf",
+                "city": "Santa Clara",
+                "name": "Levi's Stadium",
+                "roof_type": "outdoor",
+                "id": "24c71dbf-6469-46f1-8165-22005c295c8f",
+                "state": "CA",
+                "capacity": 68500
+              },
+              "sr_id": "sr:competitor:4389",
+              "franchise": {
+                "name": "49ers",
+                "alias": "SF",
+                "id": "ae0820f5-8beb-4c51-80ad-948f8810613d"
+              },
+              "references": [
+                {
+                  "origin": "gsis",
+                  "id": "SF"
+                }
+              ],
+              "name": "49ers",
+              "alias": "SF",
+              "id": "f0e724b0-4cbf-495a-be47-013907608da9"
+            },
+            {
+              "market": "Arizona",
+              "venue": {
+                "zip": "85305",
+                "country": "USA",
+                "address": "One Cardinals Drive",
+                "surface": "turf",
+                "city": "Glendale",
+                "name": "University of Phoenix Stadium",
+                "roof_type": "retractable_dome",
+                "id": "f8e4d2ab-53f9-4e9f-8c4a-9bc278094a84",
+                "state": "AZ",
+                "capacity": 63400
+              },
+              "sr_id": "sr:competitor:4412",
+              "franchise": {
+                "name": "Cardinals",
+                "alias": "ARI",
+                "id": "549f433e-a3be-4fd6-a90f-c864bd59d4ed"
+              },
+              "references": [
+                {
+                  "origin": "gsis",
+                  "id": "ARZ"
+                }
+              ],
+              "name": "Cardinals",
+              "alias": "ARI",
+              "id": "de760528-1dc0-416a-a978-b510d20692ff"
+            },
+            {
+              "market": "Los Angeles",
+              "venue": {
+                "zip": "90037",
+                "country": "USA",
+                "address": "3911 South Figueroa Street",
+                "surface": "turf",
+                "city": "Los Angeles",
+                "name": "Los Angeles Memorial Coliseum",
+                "roof_type": "outdoor",
+                "id": "4de1fcde-7c65-4145-a874-3753bdd584b7",
+                "state": "CA",
+                "capacity": 93607
+              },
+              "sr_id": "sr:competitor:4387",
+              "franchise": {
+                "name": "Rams",
+                "alias": "LA",
+                "id": "6947fd02-bb27-4f11-93da-c7c5baab53dc"
+              },
+              "references": [
+                {
+                  "origin": "gsis",
+                  "id": "LA"
+                }
+              ],
+              "name": "Rams",
+              "alias": "LA",
+              "id": "2eff2a03-54d4-46ba-890e-2bc3925548f3"
+            },
+            {
+              "market": "Seattle",
+              "venue": {
+                "zip": "98134",
+                "country": "USA",
+                "sr_id": "sr:venue:2291",
+                "address": "800 Occidental Avenue South",
+                "surface": "artificial",
+                "city": "Seattle",
+                "name": "CenturyLink Field",
+                "roof_type": "outdoor",
+                "id": "c6b9e5df-c9e4-434c-b3e6-83928f11cbda",
+                "state": "WA",
+                "capacity": 67000
+              },
+              "sr_id": "sr:competitor:4430",
+              "franchise": {
+                "name": "Seahawks",
+                "alias": "SEA",
+                "id": "a52ddba9-4709-4b76-8b1b-d9561607f7ec"
+              },
+              "references": [
+                {
+                  "origin": "gsis",
+                  "id": "SEA"
+                }
+              ],
+              "name": "Seahawks",
+              "alias": "SEA",
+              "id": "3d08af9e-c767-4f88-a7dc-b920c6d2b4a8"
+            }
+          ],
+          "name": "NFC West",
+          "alias": "NFC_WEST",
+          "id": "390d000d-9949-42e6-bf5e-b166dc463675"
+        }
+      ]
+    }
+  ]
+}
