@@ -18,6 +18,7 @@ public class User {
     private String lastName;
     private String type;
     private String email;
+    private String playerApiId;
 
     @ManyToMany(mappedBy = "followers", cascade = CascadeType.ALL)
     @JsonIgnore
@@ -69,6 +70,24 @@ public class User {
         this.lastName = lastName;
         this.type = type;
         this.email = email;
+    }
+
+    public User(String username, String password, String firstName, String lastName, String type, String email, String playerApiId) {
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.type = type;
+        this.email = email;
+        this.playerApiId = playerApiId;
+    }
+
+    public String getPlayerApiId() {
+        return playerApiId;
+    }
+
+    public void setPlayerApiId(String playerApiId) {
+        this.playerApiId = playerApiId;
     }
 
     public Set<Player> getFollowing() {
