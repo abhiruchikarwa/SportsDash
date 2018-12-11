@@ -1,9 +1,7 @@
 .login-content{
-    margin-top: 10%;
-    padding-left: 15% !important;
-    padding-right: 15% !important;
+    margin: 10%;
+    padding: 5% !important;
     text-align: center;
-    margin-bottom: 5%;
 }
 
 .login-body{
@@ -15,8 +13,7 @@
 .login-button{
     background-color: rgba(0, 38, 106, 0.75);
     color: white;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin: 2%;
     font-size: 20px;
     border-radius: 10px;
     width: 100%;
@@ -53,6 +50,28 @@
 .login-cancel-button:hover{
     cursor: pointer;
     background-color: darkred;
+    -ms-transform: scale(1.04);
+    -webkit-transform: scale(1.04);
+    transform: scale(1.04);
+}
+
+.login-register-button{
+    background-color: green;
+    color: white;
+    margin: 2%;
+    font-size: 20px;
+    border-radius: 10px;
+    width: 100%;
+    transition: transform .2s;
+}
+
+.login-register-button:focus{
+    outline: none;
+}
+
+.login-register-button:hover{
+    cursor: pointer;
+    background-color: green;
     -ms-transform: scale(1.04);
     -webkit-transform: scale(1.04);
     transform: scale(1.04);

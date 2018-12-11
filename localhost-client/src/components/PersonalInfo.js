@@ -11,27 +11,29 @@ class PersonalInfo extends Component {
             isSelf: this.props.isSelf,
             isEdit: this.props.isEdit
         }
-        UserService.getInfo(this.props.userId).then(res => {
-            if(res.status===500) {
+        UserService.getUserDetails(this.props.userId).then(res => {
+            if (res.status === 500) {
                 alert("No Such User")
                 this.props.history.push('/')
-            }else
+            } else
                 this.setState({
                     info: res,
-                })})
+                })
+        })
     }
 
     componentWillUpdate(newProps) {
         if (this.props !== newProps) {
-            UserService.getInfo(newProps.userId).then(res => {
-                if(res.status===500)
+            UserService.getUserDetails(newProps.userId).then(res => {
+                if (res.status === 500)
                     this.props.history.push('/')
                 else
                     this.setState({
-                    info: res,
-                    isSelf: newProps.isSelf,
-                    isEdit: newProps.isEdit
-                })})
+                        info: res,
+                        isSelf: newProps.isSelf,
+                        isEdit: newProps.isEdit
+                    })
+            })
         }
     }
 
@@ -48,7 +50,7 @@ class PersonalInfo extends Component {
             email: document.getElementById("email").value,
         };
         UserService.updateUser(user).then((res) =>
-        this.props.history.push('/profile/' + this.props.userId + '/false'))
+            this.props.history.push('/profile/' + this.props.userId + '/false'))
     };
 
     logOut = () => {

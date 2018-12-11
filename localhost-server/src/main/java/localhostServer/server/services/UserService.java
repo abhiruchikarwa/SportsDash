@@ -9,9 +9,9 @@ import localhostServer.server.models.Player;
 import localhostServer.server.models.Team;
 import localhostServer.server.models.User;
 
-import java.util.List;
 import java.util.Set;
 
+import javax.servlet.http.HttpSession;
 
 @RestController
 @CrossOrigin(origins = "*", allowCredentials = "true", allowedHeaders = "*")
@@ -26,18 +26,36 @@ public class UserService {
     @Autowired
     TeamRepository teamRepository;
 
-    @PostMapping("/api/user/login")
-    public User login(@RequestBody User user) {
-        return userRepository.findPersonByCredentials(user.getUsername(), user.getPassword());
+    @PostMapping("/api/login")
+    public User login(@RequestBody User user, HttpSession session) {
+        User loggedUser = userRepository.findPersonByCredentials(user.getUsername(), user.getPassword());
+
+        if (loggedUser != null) {
+            session.setAttribute("currentUser", loggedUser);
+            return loggedUser;
+        }
+        return null;
     }
 
-    @PostMapping("/api/user/register")
-    public User register(@RequestBody User user) {
+    @PostMapping("/api/logout")
+    public void logout(HttpSession session) {
+        session.invalidate();
+    }
+
+    @GetMapping("/api/profile")
+    public User profile(HttpSession session) {
+        User currentUser = (User) session.getAttribute("currentUser");
+        return currentUser;
+    }
+
+    @PostMapping("/api/register")
+    public User register(@RequestBody User user, HttpSession session) {
         if (userRepository.findPersonByUsername(user.getUsername()) != null)
             return null;
         else {
-            userRepository.save(user);
-            return user;
+            User createdUser = userRepository.save(user);
+            session.setAttribute("currentUser", createdUser);
+            return createdUser;
         }
     }
 
@@ -47,19 +65,17 @@ public class UserService {
     }
 
     @PutMapping("/api/user/update")
-    public void update(@RequestBody User user) {
-        User u = userRepository.findById(user.getId()).get();
-        u.setPassword(user.getPassword());
-        u.setFirstName(user.getFirstName());
-        u.setLastName(user.getLastName());
-        u.setEmail(user.getEmail());
-        userRepository.save(u);
+    public User update(@RequestBody User user) {
+        User userToUpdate = userRepository.findById(user.getId()).get();
+        userToUpdate.setPassword(user.getPassword());
+        userToUpdate.setFirstName(user.getFirstName());
+        userToUpdate.setLastName(user.getLastName());
+        userToUpdate.setEmail(user.getEmail());
+        return userRepository.save(userToUpdate);
     }
 
     @PostMapping("/api/user/{userId}/following/{playerId}")
-    public Set<Player> addFollowing(
-            @PathVariable("userId") int userId,
-            @PathVariable("playerId") int playerId) {
+    public Set<Player> addFollowing(@PathVariable("userId") int userId, @PathVariable("playerId") int playerId) {
 
         if (userRepository.findById(userId).isPresent() && playerRepository.findById(playerId).isPresent()) {
             User user = userRepository.findById(userId).get();
@@ -72,8 +88,7 @@ public class UserService {
     }
 
     @GetMapping("/api/user/{userId}/following")
-    public Set<Player> getFollowing(
-            @PathVariable("userId") int userId) {
+    public Set<Player> getFollowing(@PathVariable("userId") int userId) {
 
         if (userRepository.findById(userId).isPresent()) {
             User user = userRepository.findById(userId).get();
@@ -83,9 +98,7 @@ public class UserService {
     }
 
     @DeleteMapping("/api/user/{userId}/following/{playerId}")
-    public Set<Player> removeFollowing(
-            @PathVariable("userId") int userId,
-            @PathVariable("playerId") int playerId) {
+    public Set<Player> removeFollowing(@PathVariable("userId") int userId, @PathVariable("playerId") int playerId) {
 
         if (userRepository.findById(userId).isPresent() && playerRepository.findById(playerId).isPresent()) {
             User user = userRepository.findById(userId).get();
@@ -97,11 +110,8 @@ public class UserService {
         return null;
     }
 
-
     @PostMapping("/api/user/{userId}/favorite/{teamId}")
-    public Set<Team> addFavorite(
-            @PathVariable("userId") int userId,
-            @PathVariable("teamId") int teamId) {
+    public Set<Team> addFavorite(@PathVariable("userId") int userId, @PathVariable("teamId") int teamId) {
 
         if (userRepository.findById(userId).isPresent() && teamRepository.findById(teamId).isPresent()) {
             User user = userRepository.findById(userId).get();
@@ -114,8 +124,7 @@ public class UserService {
     }
 
     @GetMapping("/api/user/{userId}/favorite")
-    public Set<Team> getFavorite(
-            @PathVariable("userId") int userId) {
+    public Set<Team> getFavorite(@PathVariable("userId") int userId) {
 
         if (userRepository.findById(userId).isPresent()) {
             User user = userRepository.findById(userId).get();
@@ -125,9 +134,7 @@ public class UserService {
     }
 
     @DeleteMapping("/api/user/{userId}/favorite/{teamId}")
-    public Set<Team> removeFavorite(
-            @PathVariable("userId") int userId,
-            @PathVariable("teamId") int teamId) {
+    public Set<Team> removeFavorite(@PathVariable("userId") int userId, @PathVariable("teamId") int teamId) {
 
         if (userRepository.findById(userId).isPresent() && teamRepository.findById(teamId).isPresent()) {
             User user = userRepository.findById(userId).get();

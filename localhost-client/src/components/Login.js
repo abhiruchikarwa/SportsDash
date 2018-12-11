@@ -1,68 +1,60 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import '../styles/login.style.client.css'
 import UserService from '../services/UserService'
-import {withRouter} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 class Login extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
         this.state = {
-            username: "",
-            password: ""
+            username: '',
+            password: ''
         }
+        this.handleUsernameChange = this.handleUsernameChange.bind(this);
+        this.handlePasswordChange = this.handlePasswordChange.bind(this);
+        this.handleLogin = this.handleLogin.bind(this);
     }
 
-    login = () => {
-        let user = {
-            username: document.getElementById("username").value,
-            password: document.getElementById("password").value,
-        }
-        if(user.username==="" || user.password==="")
-            alert("Username and Password can't be empty")
-        else {
-            UserService.login(user).then(res => {
-                sessionStorage.setItem('currentUser', res.id);
-                this.props.history.push('/profile/' + res.id + '/false')
-            })
-        }
+    handleUsernameChange(event) {
+        this.setState({
+            username: event.target.value
+        });
     }
 
-    render(){
+    handlePasswordChange(event) {
+        this.setState({
+            password: event.target.value
+        });
+    }
+
+    handleLogin(event) {
+        const username = this.state.username !== '' ? this.state.username : ''
+        const password = this.state.password !== '' ? this.state.password : ''
+        UserService.login({ username, password })
+            .then((res) => {
+                sessionStorage.setItem('user', JSON.stringify(res));
+                this.props.history.push('/profile/' + res.id)
+            });
+        event.preventDefault();
+    }
+
+    render() {
         return (
-            <div className="login-content">
-                <div className="login-body">
-                    <div className="login-input">
-                        <p>username</p>
-                        <input 	type="text"
-                            className="form-control"
-                            id="username"
-                            onChange={this.usernameChanged}
-                            placeholder="username"/>
+            <div className="card login-content">
+                <form onSubmit={this.handleLogin} >
+                    <div className="form-group row">
+                        <label htmlFor="username-input"> Username: </label>
+                        <input id="username-input" type="text" className="form-control" placeholder="Enter username"
+                            onChange={this.handleUsernameChange} />
                     </div>
-                    <div className="login-input">
-                        <p>password</p>
-                        <input 	className="form-control"
-                                  id="password"
-                                  onChange={this.passwordChanged}
-                                  placeholder="password"/>
+                    <div className="form-group row">
+                        <label htmlFor="password-input"> Password: </label>
+                        <input id="password-input" type="password" className="form-control" placeholder="Enter password"
+                            onChange={this.handlePasswordChange} />
                     </div>
-                </div>
-                <div className='login-pos'>
-                    <button onClick={()=>{this.login()}}
-                         className="btn-block login-button">
-                        Sign in
-                    </button>
-                    <button onClick={()=>{this.props.history.push('/')}}
-                         className="btn-block login-cancel-button">
-                        Cancel
-                    </button>
-                    <p className='login-text'>
-                        New User? &nbsp;
-                        <span className='login-link' onClick={() => this.props.history.push('/register')}>
-                            Sign up.
-                        </span>
-                    </p>
-                </div>
+                    <input className="btn-block login-button" type="submit" value="Sign in" />
+                    <button className="btn-block login-register-button" type="submit" onClick={() => this.props.history.push('/register')}>Register</button>
+                </form>
             </div>
         )
     }

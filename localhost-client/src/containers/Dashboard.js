@@ -79,8 +79,7 @@ export default class Dashboard extends Component {
                     <Route exact path="/details" component={DetailsComponent}/>
                     <Route exact path="/login" component={Login}/>
                     <Route exact path="/register" component={Register}/>
-                    <Route exact path="/profile/:userId/:edit" component={Profile}/>
-                    {/*<Route path="/profile/:userId" render={() => (<Redirect to="/profile/:userId/false"/>)}/>*/}
+                    <Route exact path="/profile/:userId" component={Profile}/>
                 </div>
             </Router>
         );

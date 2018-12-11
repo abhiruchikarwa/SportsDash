@@ -7,14 +7,11 @@ import UserService from "../services/UserService";
 export default class CommentBox extends Component {
     constructor(props) {
         super(props);
+        let user = JSON.parse(sessionStorage.getItem('user'));
         this.state = {
             comments: [],
             commentText: "",
-            currentUser: {
-                id: 1,
-                first_name: "Kiran",
-                last_name: "N",
-            },
+            currentUser: user,
             currentPlayer: {
                 id: 1,
                 api_id: "sdaf",
@@ -102,11 +99,13 @@ export default class CommentBox extends Component {
                                 <div className="col-md-11">
                                     <input onChange={this.handleCommentChange}
                                            value={this.state.commentText}
+                                           disabled={!this.state.currentUser}
                                            className="form-control" type="text"
                                            placeholder="Write your comments here"/>
                                 </div>
                                 <div className="col-md-1 p-0">
                                     <button onClick={() => this.addComment()}
+                                            disabled={!this.state.currentUser}
                                             className="comment-button">Send
                                     </button>
                                 </div>

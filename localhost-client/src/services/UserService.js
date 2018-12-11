@@ -3,45 +3,34 @@ import constants from "../constants/constants";
 export default class UserService {
 
     static login = (user) =>
-        fetch(constants.BASE_URL + '/login', {
+        fetch(constants.BASE_URL + 'api/login', {
             body: JSON.stringify(user),
-            headers: {'Content-Type': 'application/json'},
+            headers: { 'Content-Type': 'application/json' },
             method: 'POST'
-        }).then(response => response.json())
-            .catch(error => {
-                alert("Wrong Username and Password")
-                return Promise.reject("Wrong Username and Password")
-            });
+        })
+            .then(response => response.json());
 
     static register = (user) =>
-        fetch(constants.BASE_URL + '/register', {
+        fetch(constants.BASE_URL + 'api/register', {
             body: JSON.stringify(user),
-            headers: {'Content-Type': 'application/json'},
+            headers: { 'Content-Type': 'application/json' },
             method: 'POST'
-        }).then(response => response.json())
-            .catch(error => {
-                alert("Username exist")
-                return Promise.reject("Username exist")
-            });
+        })
+            .then(response => response.json());
 
-    static getInfo = (userId) =>
-        fetch(constants.BASE_URL + '/' + userId, {
+    static getUserDetails = (userId) =>
+        fetch(constants.BASE_URL + 'api/user/' + userId, {
             method: 'GET'
-        }).then(response => response.json())
-            .catch(error => {
-                alert("No Such User")
-                return Promise.reject("No Such User")
-            });
+        })
+            .then(response => response.json());
 
     static updateUser = (user) =>
-        fetch(constants.BASE_URL + '/update', {
+        fetch(constants.BASE_URL + '/user/update', {
             body: JSON.stringify(user),
-            headers: {'Content-Type': 'application/json'},
+            headers: { 'Content-Type': 'application/json' },
             method: 'PUT'
-        }).catch(error => {
-            alert("Update Fail")
-            return Promise.reject("Username exist")
-        });
+        })
+            .then(user => user.json());
 
     static getFollowingPlayers = (userId) => {
         return fetch(constants.BASE_URL + '/' + userId + '/following', {
@@ -108,8 +97,6 @@ export default class UserService {
             .then(res => res.json())
             .catch(error => console.log(error));
     };
-
-    static comments = [{id: 1,}];
 
     static addComment = (userId, playerId, comment) => {
         return fetch(constants.BASE_URL + 'api/user/' + userId + '/comment/' + playerId, {

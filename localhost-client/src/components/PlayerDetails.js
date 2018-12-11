@@ -6,17 +6,17 @@ import PlayerService from '../services/PlayerService';
 import '../styles/profile.style.client.css';
 import UserService from "../services/UserService";
 import _ from "lodash";
+import player_img from "../resources/images/player_image/american_football.png"
 
 class PlayerDetails extends Component {
     constructor(props) {
         super(props);
+        let user = JSON.parse(sessionStorage.getItem('user'));
         this.state = {
             playerId: this.props.id,
             player: {},
             currentPlayer: {},
-            user: {
-                id: 1
-            },
+            currentUser: user,
             userFollowing: []
         }
     }
@@ -33,7 +33,7 @@ class PlayerDetails extends Component {
     }
 
     addToFollowing = () => {
-        UserService.addFollowingPlayer(this.state.user.id, this.state.currentPlayer.id)
+        UserService.addFollowingPlayer(this.state.currentUser.id, this.state.currentPlayer.id)
             .then(following => {
                 let followingPlayer = _.map(following, 'api_id');
                 this.setState({
@@ -43,7 +43,7 @@ class PlayerDetails extends Component {
     };
 
     removeFromFollowing = () => {
-        UserService.removeFollowingPlayer(this.state.user.id, this.state.currentPlayer.id)
+        UserService.removeFollowingPlayer(this.state.currentUser.id, this.state.currentPlayer.id)
             .then(following => {
                 let followingPlayer = _.map(following, 'api_id');
                 this.setState({
@@ -63,7 +63,13 @@ class PlayerDetails extends Component {
                                 <ul className='list-group'>
                                     <li className="list-group-item">
                                         <div className="row justify-content-center align-items-center">
-                                            <i className="fas fa-3x fa-user player-pic"/>
+                                            {
+                                                !this.state.currentUser ?
+                                                    <img src={player_img} alt="" width={"50%"}/> :
+                                                    (this.state.currentUser.type === "USER" ?
+                                                        <i className="fas fa-3x fa-user player-pic"/> :
+                                                        <img src={player_img} alt="" width={"50%"}/>)
+                                            }
                                         </div>
                                         <div className="row justify-content-center player-name">
                                             {this.state.player.name}
@@ -80,17 +86,20 @@ class PlayerDetails extends Component {
                                     <li className="list-group-item">Rookie Year: {this.state.player.rookie_year}</li>
                                 </ul>
                             </div>
-                            <div className="follow-section">
-                                {
-                                    this.state.userFollowing.includes(this.state.playerId) ?
-                                        <button onClick={() => this.removeFromFollowing()}
-                                                className="btn un-fav-button">Un-follow Player
-                                        </button> :
-                                        <button onClick={() => this.addToFollowing()}
-                                                className="btn btn-success fav-button">Follow Player
-                                        </button>
-                                }
-                            </div>
+                            {
+                                this.state.currentUser &&
+                                <div className="follow-section">
+                                    {
+                                        this.state.userFollowing.includes(this.state.playerId) ?
+                                            <button onClick={() => this.removeFromFollowing()}
+                                                    className="btn un-fav-button">Un-follow Player
+                                            </button> :
+                                            <button onClick={() => this.addToFollowing()}
+                                                    className="btn btn-success fav-button">Follow Player
+                                            </button>
+                                    }
+                                </div>
+                            }
                         </div>
                         }
                         <div className="profile-right col-md-9">

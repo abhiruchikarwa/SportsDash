@@ -9,14 +9,12 @@ import UserService from "../services/UserService";
 class TeamDetails extends Component {
     constructor(props) {
         super(props);
-
+        let user = JSON.parse(sessionStorage.getItem('user'));
         this.state = {
             teamId: this.props.id,
             teamDetails: {},
             team: {},
-            user: {
-                id: 1,
-            },
+            currentUser: user,
             userFavorites: []
         };
     }
@@ -34,7 +32,7 @@ class TeamDetails extends Component {
 
 
     addToFavorites = () => {
-        UserService.addFavoriteTeam(this.state.user.id, this.state.team.id)
+        UserService.addFavoriteTeam(this.state.currentUser.id, this.state.team.id)
             .then((favTeams) => {
                 let favoriteTeams = _.map(favTeams, 'api_id');
                 this.setState({
@@ -44,7 +42,7 @@ class TeamDetails extends Component {
     };
 
     removeFromFavorites = () => {
-        UserService.removeFavoriteTeam(this.state.user.id, this.state.team.id)
+        UserService.removeFavoriteTeam(this.state.currentUser.id, this.state.team.id)
             .then(favTeams => {
                 let favoriteTeams = _.map(favTeams, 'api_id');
                 this.setState({
@@ -167,17 +165,20 @@ class TeamDetails extends Component {
                                             {this.state.teamDetails.division &&
                                             <h6>{this.state.teamDetails.division.name}</h6>}
                                         </div>
-                                        <div className="card-subtitle text-center fav-button-div">
-                                            {
-                                                this.state.userFavorites.includes(this.state.teamId) ?
-                                                    <button onClick={() => this.removeFromFavorites()}
-                                                            className="btn un-fav-button">Remove Favorite
-                                                        Team</button> :
-                                                    <button onClick={() => this.addToFavorites()}
-                                                            className="btn btn-success fav-button">Add Favorite
-                                                        Team</button>
-                                            }
-                                        </div>
+                                        {
+                                            this.state.currentUser &&
+                                            <div className="card-subtitle text-center fav-button-div">
+                                                {
+                                                    this.state.userFavorites.includes(this.state.teamId) ?
+                                                        <button onClick={() => this.removeFromFavorites()}
+                                                                className="btn un-fav-button">Remove Favorite
+                                                            Team</button> :
+                                                        <button onClick={() => this.addToFavorites()}
+                                                                className="btn btn-success fav-button">Add Favorite
+                                                            Team</button>
+                                                }
+                                            </div>
+                                        }
                                         {!_.isEmpty(this.state.teamDetails) &&
                                         <this.TeamDeets team={this.state.teamDetails}/>}
                                     </div>
