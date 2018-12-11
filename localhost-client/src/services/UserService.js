@@ -100,7 +100,7 @@ export default class UserService {
     };
 
     static removeFavoriteTeam = (userId, teamId) => {
-        return fetch(constants.BASE_URL + 'api/user/' + userId + '/following/' + teamId, {
+        return fetch(constants.BASE_URL + 'api/user/' + userId + '/favorite/' + teamId, {
             method: 'DELETE',
             mode: "cors",
             credentials: 'include'

@@ -97,7 +97,6 @@ export default class CommentBox extends Component {
                                 }
                             </ul>
                         </div>
-                        {sessionStorage.getItem('currentUser') !== null &&
                         <div className="card-footer">
                             <div className="row">
                                 <div className="col-md-11">
@@ -113,10 +112,8 @@ export default class CommentBox extends Component {
                                 </div>
                             </div>
                         </div>
-                        }
                     </div>
                 </div>
-                }
             </div>
         )
     }

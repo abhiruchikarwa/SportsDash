@@ -9,6 +9,7 @@ import localhostServer.server.models.Player;
 import localhostServer.server.models.Team;
 import localhostServer.server.models.User;
 
+import java.util.List;
 import java.util.Set;
 
 
@@ -26,27 +27,27 @@ public class UserService {
     TeamRepository teamRepository;
 
     @PostMapping("/api/user/login")
-    public User login(@RequestBody User user){
-        return userRepository.findPersonByCredentials(user.getUsername(),user.getPassword());
+    public User login(@RequestBody User user) {
+        return userRepository.findPersonByCredentials(user.getUsername(), user.getPassword());
     }
 
     @PostMapping("/api/user/register")
-    public User register(@RequestBody User user){
-        if(userRepository.findPersonByUsername(user.getUsername())!=null)
+    public User register(@RequestBody User user) {
+        if (userRepository.findPersonByUsername(user.getUsername()) != null)
             return null;
-        else{
+        else {
             userRepository.save(user);
             return user;
         }
     }
 
     @GetMapping("/api/user/{userId}")
-    public User findUserById(@PathVariable ("userId") int userId){
+    public User findUserById(@PathVariable("userId") int userId) {
         return userRepository.findById(userId).get();
     }
 
     @PutMapping("/api/user/update")
-    public void update(@RequestBody User user){
+    public void update(@RequestBody User user) {
         User u = userRepository.findById(user.getId()).get();
         u.setPassword(user.getPassword());
         u.setFirstName(user.getFirstName());
@@ -56,7 +57,7 @@ public class UserService {
     }
 
     @PostMapping("/api/user/{userId}/following/{playerId}")
-    public void addFollowing(
+    public Set<Player> addFollowing(
             @PathVariable("userId") int userId,
             @PathVariable("playerId") int playerId) {
 
@@ -65,7 +66,9 @@ public class UserService {
             Player player = playerRepository.findById(playerId).get();
             user.addFollowing(player);
             userRepository.save(user);
+            return userRepository.findById(userId).get().getFollowing();
         }
+        return null;
     }
 
     @GetMapping("/api/user/{userId}/following")
@@ -80,7 +83,7 @@ public class UserService {
     }
 
     @DeleteMapping("/api/user/{userId}/following/{playerId}")
-    public void removeFollowing(
+    public Set<Player> removeFollowing(
             @PathVariable("userId") int userId,
             @PathVariable("playerId") int playerId) {
 
@@ -89,12 +92,14 @@ public class UserService {
             Player player = playerRepository.findById(playerId).get();
             user.removeFollowing(player);
             userRepository.save(user);
+            return userRepository.findById(userId).get().getFollowing();
         }
+        return null;
     }
 
 
     @PostMapping("/api/user/{userId}/favorite/{teamId}")
-    public void addFavorite(
+    public Set<Team> addFavorite(
             @PathVariable("userId") int userId,
             @PathVariable("teamId") int teamId) {
 
@@ -103,7 +108,9 @@ public class UserService {
             Team team = teamRepository.findById(teamId).get();
             user.addFavorite(team);
             userRepository.save(user);
+            return userRepository.findById(userId).get().getFavorites();
         }
+        return null;
     }
 
     @GetMapping("/api/user/{userId}/favorite")
@@ -118,7 +125,7 @@ public class UserService {
     }
 
     @DeleteMapping("/api/user/{userId}/favorite/{teamId}")
-    public void removeFavorite(
+    public Set<Team> removeFavorite(
             @PathVariable("userId") int userId,
             @PathVariable("teamId") int teamId) {
 
@@ -127,7 +134,9 @@ public class UserService {
             Team team = teamRepository.findById(teamId).get();
             user.removeFavorite(team);
             userRepository.save(user);
+            return userRepository.findById(userId).get().getFavorites();
         }
+        return null;
     }
 
 }

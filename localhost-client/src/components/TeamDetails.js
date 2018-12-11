@@ -14,7 +14,9 @@ class TeamDetails extends Component {
             teamId: this.props.id,
             teamDetails: {},
             team: {},
-            user: {},
+            user: {
+                id: 1,
+            },
             userFavorites: []
         };
     }
@@ -33,26 +35,22 @@ class TeamDetails extends Component {
 
     addToFavorites = () => {
         UserService.addFavoriteTeam(this.state.user.id, this.state.team.id)
-            .then(UserService.getFavoriteTeams(this.state.user.id)
-                .then(favTeams => {
-                    let favoriteTeams = _.map(favTeams, 'api_id');
-                    this.setState({
-                        userFavorites: favoriteTeams
-                    })
-                }))
-        //Get user and update state user
+            .then((favTeams) => {
+                let favoriteTeams = _.map(favTeams, 'api_id');
+                this.setState({
+                    userFavorites: favoriteTeams
+                })
+            })
     };
 
     removeFromFavorites = () => {
         UserService.removeFavoriteTeam(this.state.user.id, this.state.team.id)
-            .then(UserService.getFavoriteTeams(this.state.user.id)
-                .then(favTeams => {
-                    let favoriteTeams = _.map(favTeams, 'api_id');
-                    this.setState({
-                        userFavorites: favoriteTeams
-                    })
-                }))
-        //Get user and update state user
+            .then(favTeams => {
+                let favoriteTeams = _.map(favTeams, 'api_id');
+                this.setState({
+                    userFavorites: favoriteTeams
+                })
+            })
     };
 
     TeamDeets = ({team}) => {
@@ -73,14 +71,14 @@ class TeamDetails extends Component {
                 <table className="card-text table table-borderless">
                     <thead>
                     <tr className="d-flex table-row-items">
-                        <th className="col-1 match-details"><strong>No.</strong></th>
-                        <th className="col-4 match-details"><strong>Name</strong></th>
-                        <th className="col-1 match-details"><strong>Birthdate</strong></th>
-                        <th className="col-1 match-details"><strong>Position</strong></th>
-                        <th className="col-2 match-details"><strong>College Conference</strong></th>
-                        <th className="col-1 match-details"><strong>Rookie Year</strong></th>
-                        <th className="col-1 match-details"><strong>Height</strong></th>
-                        <th className="col-1 match-details"><strong>Weight</strong></th>
+                        <th className="col-1 team-detail-text"><strong>No.</strong></th>
+                        <th className="col-4 team-detail-text"><strong>Name</strong></th>
+                        <th className="col-1 team-detail-text"><strong>Birthdate</strong></th>
+                        <th className="col-1 team-detail-text"><strong>Position</strong></th>
+                        <th className="col-2 team-detail-text"><strong>College Conference</strong></th>
+                        <th className="col-1 team-detail-text"><strong>Rookie Year</strong></th>
+                        <th className="col-1 team-detail-text"><strong>Height</strong></th>
+                        <th className="col-1 team-detail-text"><strong>Weight</strong></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -104,18 +102,18 @@ class TeamDetails extends Component {
         )
     };
 
-    PlayersRow = ({key, jersey, name, v1, v2, v3, v4, v5, v6, id}) => {
+    PlayersRow = ({jersey, name, v1, v2, v3, v4, v5, v6, id}) => {
         return (
-            <tr key={key} onClick={() => this.props.history.push('/details?filter=players&id=' + id)}
+            <tr onClick={() => this.props.history.push('/details?filter=players&id=' + id)}
                 className="d-flex table-row-items table-body-item">
-                <td className="col-1 match-details">{jersey}</td>
-                <td className="col-4 match-details">{name}</td>
-                <td className="col-1 match-details">{v1}</td>
-                <td className="col-1 match-details">{v2}</td>
-                <td className="col-2 match-details">{v3}</td>
-                <td className="col-1 match-details">{v4}</td>
-                <td className="col-1 match-details">{v5} inches</td>
-                <td className="col-1 match-details">{v6} pounds</td>
+                <td className="col-1 team-detail-text">{jersey}</td>
+                <td className="col-4 team-detail-text">{name}</td>
+                <td className="col-1 team-detail-text">{v1}</td>
+                <td className="col-1 team-detail-text">{v2}</td>
+                <td className="col-2 team-detail-text">{v3}</td>
+                <td className="col-1 team-detail-text">{v4}</td>
+                <td className="col-1 team-detail-text">{v5} inches</td>
+                <td className="col-1 team-detail-text">{v6} pounds</td>
             </tr>
         )
     };
@@ -127,15 +125,15 @@ class TeamDetails extends Component {
                 <table className="card-text table table-borderless">
                     <thead>
                     <tr className="d-flex table-row-items">
-                        <th className="col-6 match-details"><strong>Name</strong></th>
-                        <th className="col-6 match-details"><strong>Position</strong></th>
+                        <th className="col-6 team-detail-text"><strong>Name</strong></th>
+                        <th className="col-6 team-detail-text"><strong>Position</strong></th>
                     </tr>
                     </thead>
                     <tbody>
                     {coaches.map((item, key) => {
                         return (<tr key={key} className="d-flex table-row-items table-body-item">
-                            <td className="col-6 match-details">{item.full_name}</td>
-                            <td className="col-6 match-details">{item.position}</td>
+                            <td className="col-6 team-detail-text">{item.full_name}</td>
+                            <td className="col-6 team-detail-text">{item.position}</td>
                         </tr>)
                     })}
                     </tbody>
