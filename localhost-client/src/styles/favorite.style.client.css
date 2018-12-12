@@ -47,3 +47,8 @@
 .card-link, .card-link:hover {
     text-decoration: none !important;
 }
+
+.no-favorite, .no-following {
+    font-size: 1rem;
+    color: #979ca0;
+}

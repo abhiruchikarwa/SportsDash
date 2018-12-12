@@ -23,3 +23,12 @@ body {
 .pre-scrollable {
      max-height: 65vh !important;
  }
+
+.welcome {
+    font-size: 20px;
+}
+
+.search-helper {
+    font-size: 1rem;
+    color: #979ca0;
+}

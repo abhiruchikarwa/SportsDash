@@ -1,5 +1,6 @@
-import React, {Component} from 'react'
-import {withRouter} from 'react-router-dom'
+import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
+
 import UserDetails from './UserDetails'
 import FavoriteComponent from "./FavoriteComponent";
 import UserService from '../services/UserService';
@@ -33,13 +34,16 @@ class Profile extends Component {
         }
     }
 
-    componentWillUpdate(newProps) {
-        if (this.props !== newProps) {
-            this.setState({
-                userId: newProps.match.params.userId,
-                isEdit: newProps.match.params.edit,
-                isSelf: newProps.match.params.userId === JSON.parse(sessionStorage.getItem('user')).id,
-            })
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props !== prevProps) {
+            UserService.getUserDetails(this.props.match.params.userId)
+                .then((user) => {
+                    this.setState({
+                        userId : this.props.match.params.userId,
+                        user,
+                        isSelf: this.props.match.params.userId === JSON.parse(sessionStorage.getItem('user')).id,
+                    });
+                });
         }
     }
 
@@ -47,7 +51,7 @@ class Profile extends Component {
         UserService.updateUser(userToUpdate)
             .then((user) => {
                 sessionStorage.setItem('user', JSON.stringify(user));
-                this.setState({user});
+                this.setState({ user });
             });
     }
 
@@ -58,34 +62,40 @@ class Profile extends Component {
                     <div className="row">
                         <div className="col-3 profile-box">
                             {
-                                this.currentUser.type === "USER" ?
+                                this.state.user && this.state.user.type === "USER" ?
                                     <UserDetails
                                         userId={this.state.userId}
                                         user={this.state.user}
-                                        updateUser={this.updateUser}/> :
+                                        isSelf={this.state.currentUser.id === this.state.user.id}
+                                        updateUser={this.updateUser} /> :
                                     <PlayerProfileDetails
-                                        playerId={this.props.match.params.userId}/>
+                                        playerId={this.state.userId}
+                                        user={this.state.user}
+                                        isSelf={this.state.currentUser.id === this.state.user.id}
+                                        updateUser={this.updateUser} />
                             }
                         </div>
                         <div className="col-6 profile-comment">
                             {
-                                this.currentUser.type === "USER" ?
-                                    <CommentBoxForUser userId={this.props.match.params.userId}/>
+                                this.state.user && this.state.user.type === "USER" ?
+                                    <CommentBoxForUser user={this.state.user}
+                                        userId={this.props.match.params.userId} />
                                     :
                                     <div>
                                         {this.state.user.playerApiId &&
-                                        <div>
-                                            <CommentBoxForUser
-                                                userId={this.props.match.params.userId}/>
-                                            <CommentBoxForPlayer
-                                                playerId={this.state.user.playerApiId}/>
-                                        </div>
+                                            <div>
+                                                <CommentBoxForUser
+                                                    user={this.state.user}
+                                                    userId={this.props.match.params.userId} />
+                                                <CommentBoxForPlayer
+                                                    playerId={this.state.user.playerApiId} />
+                                            </div>
                                         }
                                     </div>
                             }
                         </div>
                         <div className="col-3 profile-fav">
-                            <FavoriteComponent/>
+                            <FavoriteComponent />
                         </div>
 
                     </div>

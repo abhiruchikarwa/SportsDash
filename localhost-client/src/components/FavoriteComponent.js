@@ -35,14 +35,14 @@ class FavoriteComponent extends Component {
                     <div className="col-md-12">
                         <div className="card fav-card">
                             <div className="card-header text-center heading-text">
-                                Favorites
+                                Your Favorites/Following
                             </div>
                             <div className="card-body row scrollable justify-content-center">
                                 <div className="card card-subtitle col-md-12">
                                     <p className="subtitle">Favorite Teams</p>
                                 </div>
                                 {
-                                    this.state.favoriteTeams && this.state.favoriteTeams.map((team, index) =>
+                                    this.state.favoriteTeams && this.state.favoriteTeams.length > 0 ? this.state.favoriteTeams.map((team, index) =>
                                         <div key={index}
                                              className="card col-md-2 card-view-item shadow justify-content-center align-items-center">
                                             <div
@@ -55,13 +55,16 @@ class FavoriteComponent extends Component {
                                                 </div>
                                             </div>
                                         </div>
-                                    )
+                                    ) :
+                                        <div className="no-favorite">
+                                            Oops.. Did'nt find any favorites. Please add some..!
+                                        </div>
                                 }
                                 <div className="card card-subtitle col-md-12 mt-3">
                                     <p className="subtitle">Favorite Players</p>
                                 </div>
                                 {
-                                    this.state.followingPlayers && this.state.followingPlayers.map((player, index) =>
+                                    this.state.followingPlayers && this.state.followingPlayers.length > 0 ? this.state.followingPlayers.map((player, index) =>
                                         <div key={index}
                                              className="card col-md-2 card-view-item shadow justify-content-center align-items-center">
                                             <div
@@ -72,7 +75,10 @@ class FavoriteComponent extends Component {
                                                 </div>
                                             </div>
                                         </div>
-                                    )
+                                    ) :
+                                        <div className="no-following">
+                                            Oops.. Did'nt find any following. Please add some..!
+                                        </div>
                                 }
                             </div>
                         </div>

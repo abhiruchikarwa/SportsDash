@@ -11,7 +11,7 @@ export default class UserService {
       method: 'POST'
     })
       .then(response => response.json())
-      .catch(error => console.log(error));
+      .catch(error => null);
 
 
   static logout = () =>

@@ -11,7 +11,7 @@ export default class CommentBoxForUser extends Component {
             comments: [],
             commentText: "",
             currentUser: user,
-            userName: user.firstName + " " + user.lastName
+            userName: this.props.user.firstName + " " + this.props.user.lastName
         };
         this.handleCommentChange = this.handleCommentChange.bind(this)
     }

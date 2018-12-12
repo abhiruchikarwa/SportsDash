@@ -66,7 +66,7 @@ class Register extends Component {
             firstName: this.state.firstName !== '' ? this.state.firstName : '',
             lastName: this.state.lastName !== '' ? this.state.lastName : '',
             email: this.state.email !== '' ? this.state.email : '',
-            type: this.state.type !== '' ? this.state.type : '',
+            type: this.state.type !== '' ? this.state.type : 'USER',
         }
         UserService.register(user)
             .then((res) => {

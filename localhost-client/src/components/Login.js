@@ -1,7 +1,7 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import '../styles/login.style.client.css'
 import UserService from '../services/UserService'
-import {withRouter} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 class Login extends Component {
     constructor(props) {
@@ -30,12 +30,19 @@ class Login extends Component {
     handleLogin(event) {
         const username = this.state.username !== '' ? this.state.username : ''
         const password = this.state.password !== '' ? this.state.password : ''
-        UserService.login({username, password})
+        UserService.login({ username, password })
             .then((res) => {
                 sessionStorage.setItem('user', JSON.stringify(res));
-                this.props.history.push('/');
+                this.props.history.push('/home');
+            })
+            .catch((err) => {
+                alert('Invalid credentials, please check if you are registered or check credntials.');
             });
         event.preventDefault();
+    }
+
+    componentWillUnmount() {
+        this.props.forceUpdate();
     }
 
     render() {
@@ -45,16 +52,16 @@ class Login extends Component {
                     <div className="form-group row">
                         <label htmlFor="username-input"> Username: </label>
                         <input id="username-input" type="text" className="form-control" placeholder="Enter username"
-                               onChange={this.handleUsernameChange}/>
+                            onChange={this.handleUsernameChange} />
                     </div>
                     <div className="form-group row">
                         <label htmlFor="password-input"> Password: </label>
                         <input id="password-input" type="password" className="form-control" placeholder="Enter password"
-                               onChange={this.handlePasswordChange}/>
+                            onChange={this.handlePasswordChange} />
                     </div>
-                    <input className="btn-block login-button" type="submit" value="Sign in"/>
+                    <input className="btn-block login-button" type="submit" value="Sign in" />
                     <button className="btn-block login-register-button" type="submit"
-                            onClick={() => this.props.history.push('/register')}>Register
+                        onClick={() => this.props.history.push('/register')}>Register
                     </button>
                 </form>
             </div>

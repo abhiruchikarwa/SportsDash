@@ -20,7 +20,7 @@ class ScheduleBox extends Component {
                 .then(schedule => this.setState({
                     schedule: schedule
                 }))
-        }, 2500);
+        }, 2000);
     }
 
     ListItemComponent = ({ game }) => {
@@ -31,15 +31,24 @@ class ScheduleBox extends Component {
                     <span className="match-details">{moment(game.scheduled).format("ddd, MM/D")}</span>
                 </div>
                 <div className="row justify-content-center align-items-center">
-                    <div className="col-md-1"><img alt="logo" src={TeamService.getTeamLogo(game.home.name)} width={"50px"} /></div>
-                    <div className="col-md-3 match-text"><span>{game.home.name}</span></div>
-                    <div className="col-md-1 match-text"><span>{game.scoring ? game.scoring.home_points : "--"}</span>
+                    <div className="col-lg-4 col-md-4 col-sm-5 col-xs-5 row game-venue" onClick={() => this.props.history.push('/details?filter=teams&id=' + game.home.id)}>
+                        <div className="col-lg-4 col-md-4 col-sm-2 col-xs-2"><img alt="home"
+                            src={TeamService.getTeamLogo(game.home.name)}
+                            width={"50px"} /></div>
+                        <div className="col-lg-8 col-md-8 col-sm-1    0 col-xs-10 match-text"><span>{game.home.name}</span></div>
                     </div>
-                    <div className="col-md-1 text-center"><span>VS</span></div>
-                    <div className="col-md-1 match-text "><span>{game.scoring ? game.scoring.away_points : "--"}</span>
+                    <div className="col-lg-1 col-md-1 d-none d-md-block match-text"><span>{game.scoring ? game.scoring.home_points : "--"}</span>
                     </div>
-                    <div className="col-md-3 match-text"><span>{game.away.name}</span></div>
-                    <div className="col-md-1"><img alt="logo" src={TeamService.getTeamLogo(game.away.name)} width={"50px"} /></div>
+                    <div className="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center"><span>VS</span></div>
+                    <div className="col-lg-1 col-md-1 d-none d-md-block match-text "><span>{game.scoring ? game.scoring.away_points : "--"}</span>
+                    </div>
+                    <div className="col-lg-4 col-md-4 col-sm-5 col-xs-5 row game-venue" onClick={() => this.props.history.push('/details?filter=teams&id=' + game.away.id)}>
+                        <div className="col-lg-8 col-md-8 col-sm-10 col-xs-10 match-text"><span>{game.away.name}</span></div>
+                        <div className="col-lg-4 col-md-4 col-sm-2 col-xs-2"><img alt="away"
+                            src={TeamService.getTeamLogo(game.away.name)}
+                            width={"50px"} />
+                        </div>
+                    </div>
                 </div>
                 <div className="row justify-content-center align-items-center">
                     <span
