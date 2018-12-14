@@ -104,7 +104,7 @@ export default class Dashboard extends Component {
           <Route exact path="/search" component={SearchResults} />
           <Route exact path="/details" component={DetailsComponent} />
           <Route exact path="/login" render={() => <Login forceUpdate={this.forceUpdateHandler}/>}/>
-          <Route exact path="/register" component={Register} />
+          <Route exact path="/register" render={() => <Register forceUpdate={this.forceUpdateHandler}/>}/>
           <Route exact path="/profile/:userId" component={Profile} />
         </div>
       </Router>

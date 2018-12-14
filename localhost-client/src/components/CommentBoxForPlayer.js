@@ -3,6 +3,7 @@ import '../styles/comment-box.styles.client.css'
 import * as moment from 'moment'
 import PlayerService from "../services/PlayerService";
 import UserService from "../services/UserService";
+import _ from "lodash";
 
 export default class CommentBoxForPlayer extends Component {
     constructor(props) {
@@ -59,13 +60,18 @@ export default class CommentBoxForPlayer extends Component {
             <div className="container comment-section">
                 <div className="row">
                     <div className="card comment-card text-center">
-                        <div className="card-header text-center heading-text">
-                            {
-                                this.state.currentPlayer ?
-                                    <span>Comments For {this.state.currentPlayer.name}  </span>
-                                    : <span>Comments Section  </span>
-                            }
-                        </div>
+                        {this.props.parentProps && _.includes(this.props.parentProps.location.pathname, "profile") ?
+                            <div className="card-header text-center heading-text">
+                                <span>Comments For {this.state.userName} ( a.k.a {this.state.currentPlayer.name} )</span>
+                            </div> :
+                            <div className="card-header text-center heading-text">
+                                {
+                                    this.state.currentPlayer ?
+                                        <span>Comments For {this.state.currentPlayer.name} </span>
+                                        : <span>Comments Section  </span>
+                                }
+                            </div>
+                        }
                         <div id="commentSection"
                              className="card-body justify-content-center align-items-center comment-section-body">
                             <ul className="list-group">
@@ -101,23 +107,25 @@ export default class CommentBoxForPlayer extends Component {
                                 }
                             </ul>
                         </div>
-                        <div className="card-footer">
-                            <div className="row">
-                                <div className="col-md-11">
-                                    <input onChange={this.handleCommentChange}
-                                           value={this.state.commentText}
-                                           disabled={!this.state.currentUser}
-                                           className="form-control" type="text"
-                                           placeholder="Write your comments here"/>
-                                </div>
-                                <div className="col-md-1 p-0">
-                                    <button onClick={() => this.addComment()}
-                                            disabled={!this.state.currentUser}
-                                            className="comment-button">Send
-                                    </button>
+                        { this.props.parentProps && _.includes(this.props.parentProps.location.pathname, "profile") ? <div/> :
+                            <div className="card-footer">
+                                <div className="row">
+                                    <div className="col-md-11">
+                                        <input onChange={this.handleCommentChange}
+                                               value={this.state.commentText}
+                                               disabled={!this.state.currentUser}
+                                               className="form-control" type="text"
+                                               placeholder="Write your comments here"/>
+                                    </div>
+                                    <div className="col-md-1 p-0">
+                                        <button onClick={() => this.addComment()}
+                                                disabled={!this.state.currentUser}
+                                                className="comment-button">Send
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        }
                     </div>
                 </div>
             </div>

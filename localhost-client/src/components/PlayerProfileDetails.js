@@ -6,7 +6,7 @@ import '../styles/player-user-detaisl.style.client.css'
 export default class PlayerProfileDetails extends Component {
     constructor(props) {
         super(props);
-        this.currentUser = JSON.parse(sessionStorage.getItem('user'));
+        this.currentUser = this.props.user;
         this.state = {
             currentPlayer: {},
             playerDetails: {},
@@ -21,22 +21,36 @@ export default class PlayerProfileDetails extends Component {
 
     componentDidMount() {
         let currentPlayer;
-        PlayerService.getPlayerById(this.currentUser.id)
-            .then(player => {
-                currentPlayer = player;
-                PlayerService.getPlayerDetails(player.api_id)
-                    .then(details => this.setState({
-                        currentPlayer: currentPlayer,
-                        playerDetails: details,
-                        email: this.currentUser.email,
-                        password: this.currentUser.password,
-                    }))
-            })
+        if(this.currentUser) {
+            PlayerService.getPlayerById(this.currentUser.id)
+                .then(player => {
+                    currentPlayer = player;
+                    PlayerService.getPlayerDetails(player.api_id)
+                        .then(details => this.setState({
+                            currentPlayer: currentPlayer,
+                            playerDetails: details,
+                            email: this.currentUser.email,
+                            password: this.currentUser.password,
+                        }))
+                })
+        }
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps !== this.props) {
+            let currentPlayer;
             this.currentUser = this.props.user;
+            PlayerService.getPlayerById(this.props.user.id)
+                .then(player => {
+                    currentPlayer = player;
+                    PlayerService.getPlayerDetails(player.api_id)
+                        .then(details => this.setState({
+                            currentPlayer: currentPlayer,
+                            playerDetails: details,
+                            email: this.currentUser.email,
+                            password: this.currentUser.password,
+                        }))
+                })
         }
     }
 
@@ -71,7 +85,9 @@ export default class PlayerProfileDetails extends Component {
         };
 
         this.props.updateUser(user);
-        this.setState({ editMode: false });
+        this.setState({
+            editMode: false,
+        });
         event.preventDefault();
     }
 
@@ -102,6 +118,7 @@ export default class PlayerProfileDetails extends Component {
                         <div className="form-group list-group-item">
                             <label htmlFor="email-input"> Email: </label>
                             <input id="email-input" type="email" className="form-control" placeholder="Enter email"
+                                   defaultValue={this.state.email}
                                 required onChange={this.handleEmailChange} />
                         </div>}
 
@@ -112,6 +129,7 @@ export default class PlayerProfileDetails extends Component {
                         <div className="form-group list-group-item">
                             <label htmlFor="password-input"> Password: </label>
                             <input id="password-input" type="password" className="form-control" placeholder="Enter password"
+                                   defaultValue={this.state.password}
                                 required onChange={this.handlePasswordChange} />
                         </div>}
                     {this.state.playerDetails && this.state.playerDetails.team && (

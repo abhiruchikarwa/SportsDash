@@ -11,7 +11,7 @@ export default class StandingService {
         })
             .then(res => res.json())
             .then(standings => {
-                StandingService.weekNumber = standings.week.sequence;
+                StandingService.weekNumber = 14;
                 return standings
             })
             .catch(error => console.log(error));

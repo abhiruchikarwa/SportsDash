@@ -25,10 +25,10 @@ class UserDetails extends Component {
         })
     }
 
-    componentWillUpdate(newProps) {
-        if (this.props !== newProps) {
+    componentDidUpdate(preProps) {
+        if (this.props !== preProps) {
             this.setState({
-                user: newProps.user,
+                user: this.props.user,
                 password: this.props.user.password,
                 email: this.props.user.email,
             })

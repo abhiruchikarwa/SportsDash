@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import moment from 'moment';
 import _ from 'lodash';
-import { withRouter } from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 
 import '../styles/favorite.style.client.css'
 import '../styles/score.style.client.css'
@@ -21,32 +21,38 @@ class GameDetails extends Component {
 
     componentDidMount() {
         GameService.getGameDetails(this.state.gameId)
-            .then(game => this.setState({ game }));
+            .then(game => this.setState({game}));
     }
 
-    GameSummary = ({ game }) => {
+    GameSummary = ({game}) => {
         return (
             <div className="card-text">
                 <div className="row justify-content-center align-items-center">
                     <span className="game-details-text">{moment(game.scheduled).format("ddd, MM/DD/YY")}</span>
                 </div>
                 <div className="row justify-content-center align-items-center">
-                    <div className="col-lg-4 col-md-4 col-sm-5 col-xs-5 row game-venue" onClick={() => this.props.history.push('/details?filter=teams&id=' + game.home.id)}>
+                    <div className="col-lg-4 col-md-4 col-sm-5 col-xs-5 row game-venue"
+                         onClick={() => this.props.history.push('/details?filter=teams&id=' + game.home.id)}>
                         <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4"><img alt="home"
-                            src={TeamService.getTeamLogo(game.home.market + ' ' + game.home.name)}
-                            width={"50px"} /></div>
-                        <div className="col-lg-8 col-md-8 col-sm-8 col-xs-8 game-heading"><span>{game.home.market + ' ' + game.home.name}</span></div>
+                                                                                  src={TeamService.getTeamLogo(game.home.market + ' ' + game.home.name)}
+                                                                                  width={"50px"}/></div>
+                        <div className="col-lg-8 col-md-8 col-sm-8 col-xs-8 game-heading">
+                            <span>{game.home.market + ' ' + game.home.name}</span></div>
                     </div>
-                    <div className="col-lg-1 col-md-1 d-none d-md-block game-heading"><span>{game.home.points ? game.home.points : "--"}</span>
+                    <div className="col-lg-1 col-md-1 d-none d-md-block game-heading">
+                        <span>{game.home.points ? game.home.points : "--"}</span>
                     </div>
                     <div className="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center"><span>VS</span></div>
-                    <div className="col-lg-1 col-md-1 d-none d-md-block game-heading "><span>{game.away.points ? game.away.points : "--"}</span>
+                    <div className="col-lg-1 col-md-1 d-none d-md-block game-heading ">
+                        <span>{game.away.points ? game.away.points : "--"}</span>
                     </div>
-                    <div className="col-lg-4 col-md-4 col-sm-5 col-xs-5 row game-venue" onClick={() => this.props.history.push('/details?filter=teams&id=' + game.away.id)}>
-                        <div className="col-lg-8 col-md-8 col-sm-8 col-xs-8 game-heading"><span>{game.away.market + ' ' + game.away.name}</span></div>
+                    <div className="col-lg-4 col-md-4 col-sm-5 col-xs-5 row game-venue"
+                         onClick={() => this.props.history.push('/details?filter=teams&id=' + game.away.id)}>
+                        <div className="col-lg-8 col-md-8 col-sm-8 col-xs-8 game-heading">
+                            <span>{game.away.market + ' ' + game.away.name}</span></div>
                         <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4"><img alt="away"
-                            src={TeamService.getTeamLogo(game.away.market + ' ' + game.away.name)}
-                            width={"50px"} />
+                                                                                  src={TeamService.getTeamLogo(game.away.market + ' ' + game.away.name)}
+                                                                                  width={"50px"}/>
                         </div>
                     </div>
                 </div>
@@ -54,10 +60,10 @@ class GameDetails extends Component {
         )
     };
 
-    VenueDeets = ({ venue, attendance }) => {
+    VenueDeets = ({venue, attendance}) => {
         return (
             <div className="card-text game-venue"
-                onClick={() => this.props.history.push('/details?filter=venues&id=' + venue.id)}>
+                 onClick={() => this.props.history.push('/details?filter=venues&id=' + venue.id)}>
                 <div className="row justify-content-center align-items-center">
                     {venue.name} , {venue.city}, {venue.state}
                 </div>
@@ -70,7 +76,7 @@ class GameDetails extends Component {
         )
     }
 
-    GameScores = ({ team }) => {
+    GameScores = ({team}) => {
         return (
             <div className="card-text">
                 <div className="justify-content-center align-items-center scrollable-score">
@@ -93,9 +99,9 @@ class GameDetails extends Component {
                             v3={item.touchdowns}
                             v4={item.interceptions}
                         />)
-                    }) : <hr />}
+                    }) : <hr/>}
                 </div>
-                <hr />
+                <hr/>
                 <div className="justify-content-center align-items-center scrollable-score">
                     <div className="game-detail-heading">Rushing</div>
                     <div className="row">
@@ -116,9 +122,9 @@ class GameDetails extends Component {
                             v3={item.avg_yards}
                             v4={item.touchdowns}
                         />)
-                    }) : <hr />}
+                    }) : <hr/>}
                 </div>
-                <hr />
+                <hr/>
                 <div className="justify-content-center align-items-center scrollable-score">
                     <div className="game-detail-heading">Receiving</div>
                     <div className="row">
@@ -139,9 +145,9 @@ class GameDetails extends Component {
                             v3={item.avg_yards}
                             v4={item.touchdowns}
                         />)
-                    }) : <hr />}
+                    }) : <hr/>}
                 </div>
-                <hr />
+                <hr/>
                 <div className="justify-content-center align-items-center scrollable-score">
                     <div className="game-detail-heading">Defense</div>
                     <div className="row">
@@ -162,9 +168,9 @@ class GameDetails extends Component {
                             v3={item.sacks}
                             v4={item.interceptions}
                         />)
-                    }) : <hr />}
+                    }) : <hr/>}
                 </div>
-                <hr />
+                <hr/>
                 <div className="justify-content-center align-items-center scrollable-score">
                     <div className="game-detail-heading">Kick Returns</div>
                     <div className="row">
@@ -185,9 +191,9 @@ class GameDetails extends Component {
                             v3={item.avg_yards}
                             v4={item.touchdowns}
                         />)
-                    }) : <hr />}
+                    }) : <hr/>}
                 </div>
-                <hr />
+                <hr/>
                 <div className="justify-content-center align-items-center scrollable-score">
                     <div className="game-detail-heading">Punt Returns</div>
                     <div className="row">
@@ -208,13 +214,13 @@ class GameDetails extends Component {
                             v3={item.avg_yards}
                             v4={item.touchdowns}
                         />)
-                    }) : <hr />}
+                    }) : <hr/>}
                 </div>
             </div>
         )
     }
 
-    ScoreRow = ({ jersey, name, v1, v2, v3, v4 }) => {
+    ScoreRow = ({jersey, name, v1, v2, v3, v4}) => {
         return (
             <div className="row">
                 <div className="col-lg-2 col-md-2 col-sm-2 col-xs-2 game-details-text">{jersey}</div>
@@ -227,7 +233,7 @@ class GameDetails extends Component {
         )
     }
 
-    GameDeets = ({ game }) => {
+    GameDeets = ({game}) => {
         return (
             <div className="card-text">
                 <div className="container-fluid score-box">
@@ -238,7 +244,7 @@ class GameDetails extends Component {
                                     {_.upperCase(game.away.name)}
                                 </div>
                                 <div className="card-body">
-                                    <this.GameScores team={game.away} />
+                                    <this.GameScores team={game.away}/>
                                 </div>
                             </div>
                         </div>
@@ -248,7 +254,7 @@ class GameDetails extends Component {
                                     {_.upperCase(game.home.name)}
                                 </div>
                                 <div className="card-body">
-                                    <this.GameScores team={game.home} />
+                                    <this.GameScores team={game.home}/>
                                 </div>
                             </div>
                         </div>
@@ -273,13 +279,14 @@ class GameDetails extends Component {
                                     Game Details
                                 </div>
                                 <div className="card-body">
-                                    {!_.isEmpty(this.state.game) && <this.GameSummary game={this.state.game.summary} />}
-                                    <hr />
+                                    {!_.isEmpty(this.state.game) && <this.GameSummary game={this.state.game.summary}/>}
+                                    <hr/>
                                     {!_.isEmpty(this.state.game) &&
-                                        <this.VenueDeets venue={this.state.game.summary.venue}
-                                            attendance={this.state.game.attendance} />}
-                                    <hr />
-                                    {!_.isEmpty(this.state.game) && <this.GameDeets game={this.state.game.statistics} />}
+                                    <this.VenueDeets venue={this.state.game.summary.venue}
+                                                     attendance={this.state.game.attendance}/>}
+                                    <hr/>
+                                    {!_.isEmpty(this.state.game) && !_.isEmpty(this.state.game.statistics) &&
+                                    <this.GameDeets game={this.state.game.statistics}/>}
                                 </div>
                             </div>
                         </div>

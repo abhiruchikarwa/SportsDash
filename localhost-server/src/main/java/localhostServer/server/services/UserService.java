@@ -52,10 +52,20 @@ public class UserService {
     public User register(@RequestBody User user, HttpSession session) {
         if (userRepository.findPersonByUsername(user.getUsername()) != null)
             return null;
-        else {
+        else if(user.getType().equals("USER")){
+            user.setPlayerApiId("");
             User createdUser = userRepository.save(user);
             session.setAttribute("currentUser", createdUser);
             return createdUser;
+        }else {
+            if(playerRepository.findPlayerByApiId(user.getPlayerApiId())!=null &&
+                    userRepository.findPersonByPlayerId(user.getPlayerApiId())==null) {
+                User createdUser = userRepository.save(user);
+                session.setAttribute("currentUser", createdUser);
+                return createdUser;
+            }else{
+                return null;
+            }
         }
     }
 

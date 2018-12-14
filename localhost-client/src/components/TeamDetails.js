@@ -22,26 +22,28 @@ class TeamDetails extends Component {
     componentDidMount() {
         let team;
         let userFavorite;
-
         TeamService.getTeamByApiId(this.state.teamId)
-            .then(currentTeam => team = currentTeam)
+            .then(currentTeam => {
+                return team = currentTeam
+            })
             .then(() => {
                 if (this.state.currentUser) {
-                    UserService.getFavoriteTeams(this.state.currentUser.id)
+                    return UserService.getFavoriteTeams(this.state.currentUser.id)
                         .then(favorite => {
-                            userFavorite = _.map(favorite, 'api_id');
+                            userFavorite = _.map(favorite, 'api_id')
                         })
-                        .catch(userFavorite = [])
+                        .catch(error => console.log("fail"))
                 }})
             .then(() =>
                 TeamService.getTeamDetails(this.state.teamId)
-                    .then(details => this.setState({
-                        currentTeam: team,
-                        userFavorites: userFavorite,
-                        teamDetails: details,
-                    })));
+                    .then(details => {
+                        return this.setState({
+                            currentTeam: team,
+                            userFavorites: userFavorite,
+                            teamDetails: details,
+                        })
+                    }));
     }
-
 
     addToFavorites = () => {
         UserService.addFavoriteTeam(this.state.currentUser.id, this.state.currentTeam.id)
@@ -153,6 +155,8 @@ class TeamDetails extends Component {
     };
 
     render() {
+        console.log("render")
+        console.log(this.state)
         return (
             <div>
                 <div className="container-fluid fav-box">

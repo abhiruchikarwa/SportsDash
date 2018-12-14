@@ -13,6 +13,7 @@ class Register extends Component {
             lastName: '',
             email: '',
             type: '',
+            playerId: ''
         }
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
@@ -21,11 +22,18 @@ class Register extends Component {
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handleTypeChange = this.handleTypeChange.bind(this);
         this.handleRegister = this.handleRegister.bind(this);
+        this.handlePlayerIdChange = this.handlePlayerIdChange.bind(this);
     }
 
     handleUsernameChange(event) {
         this.setState({
             username: event.target.value
+        });
+    }
+
+    handlePlayerIdChange(event) {
+        this.setState({
+            playerId: event.target.value
         });
     }
 
@@ -59,6 +67,10 @@ class Register extends Component {
         });
     }
 
+    componentWillUnmount() {
+        this.props.forceUpdate();
+    }
+
     handleRegister(event) {
         const user = {
             username: this.state.username !== '' ? this.state.username : '',
@@ -67,12 +79,16 @@ class Register extends Component {
             lastName: this.state.lastName !== '' ? this.state.lastName : '',
             email: this.state.email !== '' ? this.state.email : '',
             type: this.state.type !== '' ? this.state.type : 'USER',
+            playerApiId: this.state.playerId !== '' ? this.state.playerId : '',
         }
         UserService.register(user)
             .then((res) => {
                 sessionStorage.setItem('user', JSON.stringify(res));
                 this.props.history.push('/home')
-            });
+            })
+            .catch((err) => {
+                alert('Please check username exist or player API id correct.');
+        });
         event.preventDefault();
     }
 
@@ -112,8 +128,13 @@ class Register extends Component {
                             <option value="PLAYER">Player</option>
                         </select>
                     </div>
+                    <div className="form-group row">
+                        <label htmlFor="playerId-input"> Player API Id (if you want register as a player): </label>
+                        <input id="playerId-input" type="text" className="form-control" placeholder="Enter player API id"
+                               onChange={this.handlePlayerIdChange} />
+                    </div>
                     <input className="btn-block login-register-button" type="submit" value="Register" />
-                    <button className="btn-block login-button" onClick={() => this.props.history.push('/profile')}>Log in</button>
+                    <button className="btn-block login-button" onClick={() => this.props.history.push('/login')}>Log in</button>
                 </form>
 
             </div>

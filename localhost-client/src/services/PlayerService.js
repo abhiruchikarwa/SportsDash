@@ -39,6 +39,6 @@ export default class PlayerService {
             credentials: 'include'
         })
             .then(res => res.json())
-            .catch(error => console.log(error));
+            .catch(error => null);
     }
 }

@@ -30,7 +30,7 @@ class Profile extends Component {
                         userId,
                         user,
                     });
-                });
+                })
         }
     }
 
@@ -59,6 +59,7 @@ class Profile extends Component {
         return (
             <div className='profile-content'>
                 <div className='profile-body'>
+                    { this.state.user && this.state.user.id &&
                     <div className="row">
                         <div className="col-3 profile-box">
                             {
@@ -66,12 +67,12 @@ class Profile extends Component {
                                     <UserDetails
                                         userId={this.state.userId}
                                         user={this.state.user}
-                                        isSelf={this.state.currentUser.id === this.state.user.id}
+                                        isSelf={this.state.currentUser && this.state.currentUser.id === this.state.user.id}
                                         updateUser={this.updateUser} /> :
                                     <PlayerProfileDetails
                                         playerId={this.state.userId}
                                         user={this.state.user}
-                                        isSelf={this.state.currentUser.id === this.state.user.id}
+                                        isSelf={this.state.currentUser && this.state.currentUser.id === this.state.user.id}
                                         updateUser={this.updateUser} />
                             }
                         </div>
@@ -88,6 +89,7 @@ class Profile extends Component {
                                                     user={this.state.user}
                                                     userId={this.props.match.params.userId} />
                                                 <CommentBoxForPlayer
+                                                    parentProps={this.props}
                                                     playerId={this.state.user.playerApiId} />
                                             </div>
                                         }
@@ -97,8 +99,8 @@ class Profile extends Component {
                         <div className="col-3 profile-fav">
                             <FavoriteComponent />
                         </div>
-
                     </div>
+                    }
                 </div>
             </div>
         )

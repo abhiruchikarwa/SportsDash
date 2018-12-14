@@ -7,6 +7,7 @@ import '../styles/profile.style.client.css';
 import UserService from "../services/UserService";
 import _ from "lodash";
 import player_img from "../resources/images/player_image/american_football.png"
+import TeamService from "../services/TeamService";
 
 class PlayerDetails extends Component {
   constructor(props) {
@@ -26,10 +27,12 @@ class PlayerDetails extends Component {
     let userFollowing;
 
     PlayerService.getPlayerByApiId(this.state.playerId)
-      .then(player => currentPlayer = player)
+      .then(player => {
+          return currentPlayer = player
+      })
       .then(() => {
           if (this.state.currentUser) {
-               UserService.getFollowingPlayers(this.state.currentUser.id)
+               return UserService.getFollowingPlayers(this.state.currentUser.id)
                   .then(following => {
                       userFollowing = _.map(following, 'api_id');
                   })
@@ -37,11 +40,13 @@ class PlayerDetails extends Component {
       }})
       .then(() =>
         PlayerService.getPlayerDetails(this.state.playerId)
-          .then(details => this.setState({
-            currentPlayer: currentPlayer,
-            userFollowing: userFollowing,
-            player: details,
-          })));
+          .then(details => {
+              return this.setState({
+                  currentPlayer: currentPlayer,
+                  userFollowing: userFollowing,
+                  player: details,
+              })
+          }));
   }
 
   addToFollowing = () => {
